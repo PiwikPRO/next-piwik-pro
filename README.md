@@ -6,19 +6,19 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
   - [NPM](#npm)
   - [Basic setup](#basic-setup)
   - [Setup with nonce](#setup-with-nonce)
-- [Supported methods list](#supported-methods-list)
+- [Supported methods list and usage](#supported-methods-list-and-usage)
   - [Analytics](#analytics)
-    - [Page Views](#send-page-views-and-virtual-page-views)
+    - [Page views](#send-page-views-and-virtual-page-views)
     - [User Management](#user-management)
-    - [Custom Events](#send-custom-events)
+    - [Custom Events](#custom-events)
     - [Site search](#site-search)
-    - [E-Commerce](#e-commerce)
+    - [E-commerce](#e-commerce)
     - [Content Tracking](#content-tracking)
-    - [Download and outlink](#download-and-outlink)
+    - [Downloads and outlinks](#downloads-and-outlinks)
     - [Goal Conversions](#goal-conversions)
     - [Custom Dimensions](#custom-dimensions)
-  - [Tag manager](#tag-manager)
-    - [DataLayer](#datalayer)
+  - [Tag Manager](#tag-manager)
+    - [Data layer](#data-layer)
 
 ## Installation
 
@@ -26,13 +26,13 @@ To use this package in your project, run the following command.
 
 ### npm
 
-```
+``` sh
 npm install @piwikpro/next-piwik-pro
 ```
 
 ### Yarn
 
-```
+``` sh
 yarn add @piwikpro/next-piwik-pro
 ```
 
@@ -42,7 +42,7 @@ In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx
 
 In the arguments, pass your account name and your container id as parameters (marked 'accountName' and 'containerId' in the example below).
 
-##### \_app.tsx
+#### \_app.tsx
 
 ```ts
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
@@ -65,14 +65,14 @@ function App({ Component, pageProps }: AppProps) {
 
 If you plan to use environmental variables to config your Piwik account you can do it with adding them to your `.env` file. Remember that variables to be visible in component need to be named with `NEXT_PUBLIC_` prefix, in other cases they will be visible only in Node context but not in Next.
 
-##### .env
+#### .env
 
-```
+``` sh
 NEXT_PUBLIC_ACCOUNT_NAME=accountName
 NEXT_PUBLIC_CONTAINER_ID=43e4bca4-e220-43df-acfc-40fef7e25105
 ```
 
-##### \_app.tsx
+#### \_app.tsx
 
 ```ts
 function App({ Component, pageProps }: AppProps) {
@@ -95,7 +95,7 @@ The nonce attribute is useful to allow-list specific elements, such as a particu
 
 If you want your nonce to be passed to the script, pass it as the third argument when calling the script initialization method.
 
-##### \_app.tsx
+#### \_app.tsx
 
 ```ts
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
@@ -155,7 +155,7 @@ Below you can view the sample usage of the avialable methods from modules.
 
 ### Analytics
 
-#### Pages views
+#### Send page views and virtual page views
 
 ```ts
 const { PageViews } = usePiwikPro()
@@ -267,9 +267,9 @@ const { SiteSearch } = usePiwikPro()
 SiteSearch.trackSiteSearch('keyword', 'category', 5)
 ```
 
-#### E-Commerce
+#### E-commerce
 
-Collection of methods to handle eCommerce events through the Piwik PRO API.
+Collection of methods to handle e-commerce events through the Piwik PRO API.
 
 ##### Methods
 
@@ -387,7 +387,7 @@ ContentTracking.trackContentInteraction(
 )
 ```
 
-#### Download and outlink
+#### Downloads and outlinks
 
 Collection of methods to manually tracks outlink or download events through the Piwik PRO API.
 
@@ -493,7 +493,7 @@ GoalConversions.trackGoal(1, 30)
 
 Collection of methods to manage custom dimentsions through the Piwik PRO API.
 
-###### Methods
+##### Methods
 
 - `CustomDimensions.setCustomDimensionValue(customDimensionID, customDimensionValue` - Sets a custom dimension to be used later.
 
@@ -504,9 +504,9 @@ Collection of methods to manage custom dimentsions through the Piwik PRO API.
   - `customDimensionID (number)` – Required ID of a custom dimension
 
 - `CustomDimensions.getCustomDimensionValue(customDimensionID)`- Returns the value of a custom dimension with the specified ID. Returns: Value set with `setCustomDimensionValue` (e.g. `loginStatus`). Return type: `string`
-  - `customDimensionID (number) `– Required ID of a custom dimension.
+  - `customDimensionID (number)`– Required ID of a custom dimension.
 
-###### Example usage
+##### Example usage
 
 ```ts
 const { CustomDimensions } = usePiwikPro()
@@ -541,18 +541,18 @@ You have access to those variables in you page body. Example access below.
 </p>
 ```
 
-### Tag manager
+### Tag Manager
 
-#### DataLayer
+#### Data layer
 
 A data layer is a data structure on your site or app where you can store data and access it with tools like Tag Manager. You can include any data you want in your data layer.
 
-###### Methods
+##### Methods
 
 - `DataLayer.push(data)` - Adds an event to a data layer.
   - `data` - Required data value without type.
 
-###### Example usage
+##### Example usage
 
 ```ts
 const { DataLayer } = usePiwikPro()

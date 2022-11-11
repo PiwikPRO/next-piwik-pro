@@ -1,6 +1,6 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "main": "dist/index.js",

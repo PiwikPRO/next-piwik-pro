@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "index.js",
   "source": "src/index.tsx",
   "author": "",
   "engines": {

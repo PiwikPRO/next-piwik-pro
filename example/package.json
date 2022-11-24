@@ -6,12 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@piwikpro/next-piwik-pro": "^1.0.0",
+    "@piwikpro/next-piwik-pro": "file:../dist",
     "config": "^3.3.7",
     "date-fns": "^2.11.1",
     "dotenv": "^16.0.1",
     "gray-matter": "^4.0.2",
-    "next": "latest",
+    "next": "^12.2.5",
+    "next-transpile-modules": "^10.0.0",
     "path": "^0.12.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",

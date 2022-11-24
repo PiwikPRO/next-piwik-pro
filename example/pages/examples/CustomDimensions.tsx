@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     title: 'CustomDimensions',
     heading: 'Custom Dimensions',
     description:
-      'Goals let you define important actions registered in your application and track conversions when the conditions for the action are fulfilled.',
+      'Collection of methods to manage custom dimensions through the Piwik PRO API.',
     methods: [
       {
         method: 'setCustomDimensionValue',

@@ -51,7 +51,7 @@ const DataLayerPage: NextPage<
         <div>
           <p>
             <code>
-              {`import { usePiwikPro } from 'nxtpwkpkg'`}
+              {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
               <br />
               {'const { DataLayer } = usePiwikPro()'}
             </code>

@@ -34,7 +34,7 @@ const DataLayerPage: NextPage<
 
   useEffect(() => {
     // function push(data: any): any
-    DataLayer.push('data')
+    DataLayer.push({ data: 'data' })
   }, [])
 
   return (
@@ -51,7 +51,7 @@ const DataLayerPage: NextPage<
         <div>
           <p>
             <code>
-              {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+              {`import { usePiwikPro } from 'nxtpwkpkg'`}
               <br />
               {'const { DataLayer } = usePiwikPro()'}
             </code>
@@ -81,7 +81,7 @@ const DataLayerPage: NextPage<
         <div>
           <button
             onClick={() => {
-              DataLayer.push('data')
+              DataLayer.push({ data: 'data' })
             }}
           >
             DataLayer.push

@@ -9,7 +9,6 @@ import {
 } from 'next'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const pageData = {
@@ -252,7 +251,7 @@ const DownloadAndOutlinkPage: NextPage<
             disabled by default, you can turn on/off by button
             <br />
             <a className='do-not-track' href='/files/example.xlsx'>
-              Download XLXS
+              Download XLSX
             </a>{' '}
             - download turned off by default using className
           </div>

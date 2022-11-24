@@ -1,12 +1,7 @@
 import Layout from '../../components/layout'
 import Head from 'next/head'
 import utilStyles from '../../styles/utils.module.css'
-import {
-  NextPage,
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  GetStaticProps
-} from 'next'
+import { NextPage, GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
 import React, { useEffect } from 'react'
 
@@ -32,11 +27,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-const DataLayerPage: NextPage<InferGetServerSidePropsType<GetStaticProps>> = ({
-  pageData
-}: {
-  pageData: any
-}) => {
+const DataLayerPage: NextPage<
+  InferGetServerSidePropsType<GetServerSideProps<{ pageData: any }>>
+> = ({ pageData }: { pageData: any }) => {
   const { DataLayer } = usePiwikPro()
 
   useEffect(() => {

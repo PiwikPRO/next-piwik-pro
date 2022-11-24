@@ -14,7 +14,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const pageData = {
     title: 'eCommerce',
     heading: 'User Management',
-    description: 'Allow api calls to interact with visitor data.',
+    description:
+      'Collection of methods to handle eCommerce events through the Piwik PRO API.',
     methods: [
       {
         method: 'addEcommerceItem',

@@ -38,6 +38,30 @@ yarn add @piwikpro/next-piwik-pro
 
 ### Basic setup
 
+Some Next.js project have problems with importing ESM libraries. To handle that you need to install `next-transpile-modules` lib.
+
+```
+npm install --save next-transpile-modules
+```
+
+Then you need to make some adaptions in your `next.config.js` file. Please adapt your file as example below. If it's no exist please create it in main project directory.
+
+##### next.config.json
+
+```ts
+/** @type {import('next').NextConfig} */
+
+const withTM = require('next-transpile-modules')(['@piwikpro/next-piwik-pro'])
+
+const nextConfig = {
+  /* Your Next.js config */
+}
+
+module.exports = withTM(nextConfig)
+
+```
+
+
 In your Next.js Project, include the default `PiwikProProvider` in the `_app.tsx` file. To set up the Piwik PRO Tag Manager container in the app, include the initialization code in your `App`.
 
 In the arguments, pass your account name and your container id as parameters (marked 'accountName' and 'containerId' in the example below).
@@ -151,7 +175,7 @@ useEffect(() => {
 </button>
 ```
 
-Below you can view the sample usage of the avialable methods from modules.
+Below you can view the sample usage of the available methods from modules.
 
 ### Analytics
 
@@ -219,10 +243,10 @@ callAsyncMethods()
 You have access to those variables in you page body. Example access below.
 
 ```html
-<p><code>UserManamement.getUserId()</code> - {userId}</p>
-<p><code>UserManamement.getVisitorId()</code> - {visitorId}</p>
+<p><code>UserManagement.getUserId()</code> - {userId}</p>
+<p><code>UserManagement.getVisitorId()</code> - {visitorId}</p>
 <p>
-  <code>UserManamement.getVisitorInfo()</code> -{' '}
+  <code>UserManagement.getVisitorInfo()</code> -{' '}
   {JSON.stringify(visitorInfo)}
 </p>
 ```
@@ -380,7 +404,7 @@ ContentTracking.trackContentImpression(
 )
 
 ContentTracking.trackContentInteraction(
-  'contentInteracion',
+  'contentInteraction',
   'contentName',
   'contentPiece',
   'contentTarget'
@@ -491,7 +515,7 @@ GoalConversions.trackGoal(1, 30)
 
 #### Custom Dimensions
 
-Collection of methods to manage custom dimentsions through the Piwik PRO API.
+Collection of methods to manage custom dimensions through the Piwik PRO API.
 
 ###### Methods
 

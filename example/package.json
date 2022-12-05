@@ -5,8 +5,11 @@
     "build": "next build",
     "start": "next start"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
-    "@piwikpro/next-piwik-pro": "^1.0.2",
+    "@piwikpro/next-piwik-pro": "^1.0.3",
     "config": "^3.3.7",
     "date-fns": "^2.11.1",
     "dotenv": "^16.0.1",

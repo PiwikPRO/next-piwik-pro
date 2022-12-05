@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@piwikpro/next-piwik-pro": "file:../dist",
+    "@piwikpro/next-piwik-pro": "^1.0.2",
     "config": "^3.3.7",
     "date-fns": "^2.11.1",
     "dotenv": "^16.0.1",

@@ -1,6 +1,6 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "lint": "yarn eslint .",
     "build": "tsc",
     "postbuild": "cp package.json dist/",
-    "publish-package": "npm run build && cp package.json dist/ && (cd dist && npm publish)"
+    "publish-package": "npm run build && cp README.md dist/ && cp package.json dist/ && (cd dist && npm publish)"
   },
   "repository": {
     "type": "git",

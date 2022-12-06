@@ -1,13 +1,13 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "main": "index.js",
   "source": "src/index.tsx",
   "author": "",
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

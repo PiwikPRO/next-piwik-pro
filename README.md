@@ -77,7 +77,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        containerUrl='https://container-url.com',
+        containerUrl='https://container-url.com'
         containerId='43e4bca4-e220-43df-acfc-40fef7e25105'
       >
         <Component {...pageProps} />

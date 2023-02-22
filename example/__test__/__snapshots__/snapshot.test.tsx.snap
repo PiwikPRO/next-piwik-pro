@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index should render homepage unchanged 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <header
+      class="header"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+      >
+        <span
+          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+        >
+          <img
+            alt=""
+            aria-hidden="true"
+            src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27144%27%20height=%27144%27/%3e"
+            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+          />
+        </span>
+        <img
+          alt="PiwikPRO Next.js Examples"
+          class="borderCircle"
+          data-nimg="intrinsic"
+          decoding="async"
+          src="/_next/image?url=%2Fimages%2Fprofile.png&w=384&q=75"
+          srcset="/_next/image?url=%2Fimages%2Fprofile.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Fprofile.png&w=384&q=75 2x"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+      </span>
+      <h1
+        class="heading2Xl"
+      >
+        PiwikPRO Next.js Examples
+      </h1>
+    </header>
+    <main>
+      <section
+        class="headingMd padding1px"
+      >
+        <h2
+          class="headingLg"
+        >
+          Examples of usage 
+        </h2>
+        <ul
+          class="list"
+        >
+          <li
+            class="listItem"
+          >
+            <a
+              href="/examples/DownloadAndOutlink"
+            >
+              DownloadAndOutlink
+            </a>
+            <br />
+          </li>
+          <li
+            class="listItem"
+          >
+            <a
+              href="/examples/GoalConversions"
+            >
+              GoalConversions
+            </a>
+            <br />
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</div>
+`;

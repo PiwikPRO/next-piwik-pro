@@ -2,12 +2,13 @@ name: Monorepo development pipeline
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
-  release:
+  build-library:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,11 +18,20 @@ jobs:
       - name: Use NodeJS 18
         uses: actions/setup-node@v3.3.0
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
-      - name: Install dependencies
+      - name: Install library dependencies
         run: npm ci
 
-      - name: Run build
+      - name: Run library build
         run: npm run build
+
+      - name: Install example dependencies
+        run: cd example && npm ci
+
+      - name: Run example build
+        run: cd example && npm run build
+
+      - name: Run example tests
+        run: cd example && npm run test

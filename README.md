@@ -6,6 +6,7 @@ Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager a
   - [NPM](#npm)
   - [Basic setup](#basic-setup)
   - [Setup with nonce](#setup-with-nonce)
+  - [Setup with Next.js 13 - App Router](#setup-with-nextjs-13---app-router)
 - [Supported methods list and usage](#supported-methods-list-and-usage)
   - [Analytics](#analytics)
     - [Page views](#send-page-views-and-virtual-page-views)
@@ -140,6 +141,72 @@ function App({ Component, pageProps }: AppProps) {
   )
 }
 ```
+
+### Setup with Next.js 13 - App Router
+
+When using Next.js 13 with the new App Router and the `/app` directory structure, Piwik needs to be wrapped inside a Client Component (Provider). Additionally, Router events are no longer available, so you need to use the new `usePathname()` hook and `useEffect()` to listen for path changes to track Piwik page views accordingly.
+
+```ts
+// app/layout.tsx
+import Provider from "./provider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html>
+      <body>
+        <Provider>
+          {children}
+        </Provider>
+      </body>
+    </html>
+  );
+}
+```
+
+```ts
+// app/provider.tsx
+"use client";
+
+import PiwikProProvider, { usePiwikPro } from "@piwikpro/next-piwik-pro";
+import { useEffect, useRef } from "react";
+
+import { usePathname } from "next/navigation";
+
+export default function Provider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const { PageViews } = usePiwikPro();
+
+  // Save pathname on component mount into a Ref
+  const pathnameRef = useRef(pathname);
+
+  // If path changes, track a page view
+  useEffect(() => {
+    if (pathnameRef.current !== pathname) {
+      pathnameRef.current = pathname;
+      PageViews.trackPageView();
+    }
+  }, [pathname]);
+
+  return (
+    <PiwikProProvider
+      containerId="https://container-url.com"
+      containerUrl="a-container-id"
+    >
+      {children}
+    </PiwikProProvider>
+  );
+}
+
+```
+
 
 ## Supported methods list and usage
 

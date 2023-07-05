@@ -21,7 +21,9 @@
     "url": "git@github.com:PiwikPRO/next-piwik-pro.git"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^1.1.1",
+    "@piwikpro/react-piwik-pro": "^1.1.1"
+  },
+  "peerDependencies": {
     "next": "^12.2.3",
     "react": "^18.2.0"
   },

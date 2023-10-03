@@ -6,7 +6,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <PiwikProProvider
-        accountName={process.env.NEXT_PUBLIC_ACCOUNT_NAME}
+        containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
         containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
       >
         <Component {...pageProps} />

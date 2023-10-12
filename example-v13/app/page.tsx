@@ -8,7 +8,9 @@ const EXAMPLES: string[] = [
   'CustomDimensions',
   'CustomEvent',
   'DataLayer',
-  'DownloadAndOutlink'
+  'DownloadAndOutlink',
+  'eCommerce',
+  'GoalConversions'
 ]
 
 export default function Home() {

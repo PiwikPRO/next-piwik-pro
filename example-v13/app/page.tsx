@@ -6,7 +6,8 @@ import Link from 'next/link'
 const EXAMPLES: string[] = [
   'ContentTracking',
   'CustomDimensions',
-  'CustomEvent'
+  'CustomEvent',
+  'DataLayer'
 ]
 
 export default function Home() {

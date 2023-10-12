@@ -4,7 +4,9 @@ import React from 'react'
 import Link from 'next/link'
 
 const EXAMPLES: string[] = [
-  'ContentTracking'
+  'ContentTracking',
+  'CustomDimensions',
+  'CustomEvent'
 ]
 
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
               <Link href={`/examples/${id}`}>
                 {id}
               </Link>
-              <br />
+              <br/>
             </li>
           ))}
         </ul>

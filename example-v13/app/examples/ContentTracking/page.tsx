@@ -4,19 +4,7 @@ import ContentTrackingPiwik from '@/src/components/ContentTracking/ContentTracki
 import Head from 'next/head'
 import utilStyles from '../../../styles/utils.module.css'
 import TrackContentButtons from '@/src/components/ContentTracking/TrackContentButtons'
-
-type Method = {
-  method: string
-  usage: string
-  desc: string
-}
-
-type PageData = {
-  title: string
-  heading: string
-  description: string
-  methods: Method[]
-}
+import {PageData} from '@/types/pageData'
 
 const getPageData = (): PageData => (
   {

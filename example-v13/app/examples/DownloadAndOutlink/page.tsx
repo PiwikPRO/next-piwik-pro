@@ -67,7 +67,7 @@ const getPageData = (): PageData => (
   }
 )
 
-const DownloadAndOutlink: NextPage = () => {
+const DownloadAndOutlinkPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
@@ -106,4 +106,4 @@ const DownloadAndOutlink: NextPage = () => {
   )
 }
 
-export default DownloadAndOutlink
+export default DownloadAndOutlinkPage

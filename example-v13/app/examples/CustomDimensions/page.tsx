@@ -1,8 +1,8 @@
-import {FunctionComponent} from 'react'
 import {PageData} from '@/types/pageData'
 import CustomDimensionResults from '@/src/components/CustomDimensions/CustomDimensionResults'
 import Head from 'next/head'
 import utilStyles from '../../../styles/utils.module.css'
+import {NextPage} from 'next'
 
 const getPageData = (): PageData => (
   {
@@ -33,7 +33,7 @@ const getPageData = (): PageData => (
   }
 )
 
-const CustomDimensions: FunctionComponent = () => {
+const CustomDimensionsPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
@@ -73,4 +73,4 @@ const CustomDimensions: FunctionComponent = () => {
   )
 }
 
-export default CustomDimensions
+export default CustomDimensionsPage

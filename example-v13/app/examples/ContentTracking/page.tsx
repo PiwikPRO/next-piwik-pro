@@ -5,6 +5,7 @@ import Head from 'next/head'
 import utilStyles from '../../../styles/utils.module.css'
 import TrackContentButtons from '@/src/components/ContentTracking/TrackContentButtons'
 import {PageData} from '@/types/pageData'
+import {NextPage} from 'next'
 
 const getPageData = (): PageData => (
   {
@@ -30,7 +31,7 @@ const getPageData = (): PageData => (
 )
 
 
-export default function ContentTracking() {
+const ContentTrackingPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
@@ -80,3 +81,5 @@ export default function ContentTracking() {
     </>
   )
 }
+
+export default ContentTrackingPage

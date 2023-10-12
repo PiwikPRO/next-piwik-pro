@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import utilStyles from '@/styles/utils.module.css'
-import React, {FunctionComponent} from 'react'
+import React from 'react'
 import {PageData} from '@/types/pageData'
 import CustomEventButton from '@/src/components/CustomEvent/CustomEventButton'
+import {NextPage} from 'next'
 
 const getPageData = (): PageData => (
   {
@@ -21,7 +22,7 @@ const getPageData = (): PageData => (
   }
 )
 
-const CustomEventPage: FunctionComponent = () => {
+const CustomEventPage: NextPage = () => {
   const pageData = getPageData()
 
   return (

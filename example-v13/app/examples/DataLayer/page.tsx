@@ -3,6 +3,7 @@ import React from 'react'
 import utilStyles from '@/styles/utils.module.css'
 import Head from 'next/head'
 import DataLayerButton from '@/src/components/DataLayer/DataLayerButton'
+import {NextPage} from 'next'
 
 const getPageData = (): PageData => (
   {
@@ -20,7 +21,7 @@ const getPageData = (): PageData => (
   }
 )
 
-const DataLayer = () => {
+const DataLayerPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
@@ -72,4 +73,4 @@ const DataLayer = () => {
   )
 }
 
-export default DataLayer
+export default DataLayerPage

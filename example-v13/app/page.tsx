@@ -7,7 +7,8 @@ const EXAMPLES: string[] = [
   'ContentTracking',
   'CustomDimensions',
   'CustomEvent',
-  'DataLayer'
+  'DataLayer',
+  'DownloadAndOutlink'
 ]
 
 export default function Home() {

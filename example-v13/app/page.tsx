@@ -10,7 +10,8 @@ const EXAMPLES: string[] = [
   'DataLayer',
   'DownloadAndOutlink',
   'eCommerce',
-  'GoalConversions'
+  'GoalConversions',
+  'SiteSearch'
 ]
 
 export default function Home() {

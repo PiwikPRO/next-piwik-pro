@@ -11,7 +11,8 @@ const EXAMPLES: string[] = [
   'DownloadAndOutlink',
   'eCommerce',
   'GoalConversions',
-  'SiteSearch'
+  'SiteSearch',
+  'UserManagement'
 ]
 
 export default function Home() {

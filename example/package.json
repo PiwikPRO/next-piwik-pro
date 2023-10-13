@@ -10,17 +10,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "@piwikpro/next-piwik-pro": "file:../dist",
     "next": "latest",
-    "@piwikpro/next-piwik-pro": "file:../dist"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "typescript": "latest"
   }
 }

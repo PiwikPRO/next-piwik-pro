@@ -26,7 +26,7 @@ export default function Home() {
         <ul className={utilStyles.list}>
           {EXAMPLES.map((id) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/examples/${id}`}>
+              <Link href={`/${id}`}>
                 {id}
               </Link>
               <br/>

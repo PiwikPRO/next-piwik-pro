@@ -1,3 +1,5 @@
+'use client'
+
 import {FunctionComponent, useEffect} from 'react'
 import {usePiwikPro} from '@piwikpro/next-piwik-pro'
 

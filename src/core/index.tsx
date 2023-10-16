@@ -1,3 +1,5 @@
+'use client'
+
 import React, { ReactElement, useContext } from 'react'
 import Script from 'next/script'
 import * as PiwikPro from '@piwikpro/react-piwik-pro'

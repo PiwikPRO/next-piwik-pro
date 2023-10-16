@@ -1,10 +1,11 @@
 # Example project with usage of Piwik PRO Library for Next.js
 
-Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in Next.js applications.
+Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in
+Next.js applications.
 
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Run](#project-run)
+- [Run](#run)
 
 ## Installation
 

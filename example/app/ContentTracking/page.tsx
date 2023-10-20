@@ -2,7 +2,7 @@
 
 import ContentTrackingPiwik from '@/src/components/ContentTracking/ContentTrackingPiwik'
 import Head from 'next/head'
-import utilStyles from '../../styles/utils.module.css'
+import utilStyles from '@/styles/utils.module.css'
 import TrackContentButtons from '@/src/components/ContentTracking/TrackContentButtons'
 import {PageData} from '@/types/pageData'
 import {NextPage} from 'next'

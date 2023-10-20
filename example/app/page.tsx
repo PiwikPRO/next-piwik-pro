@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import utilStyles from '../styles/utils.module.css'
+import utilStyles from '@/styles/utils.module.css'
 import React from 'react'
 import Link from 'next/link'
 
@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Piwik Pro - Nextjs 13 examples</title>
+        <title>Piwik PRO - Nextjs 13 examples</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Examples of usage </h2>

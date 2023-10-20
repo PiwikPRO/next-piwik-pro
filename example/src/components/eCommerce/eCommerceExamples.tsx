@@ -7,7 +7,7 @@ import utilStyles from '@/styles/utils.module.css'
 const eCommerceExamples: FunctionComponent = () => {
   const {eCommerce} = usePiwikPro()
 
-  const [eCommerceItems, setECommerceInfo] = useState<any>('')
+  const [eCommerceItems, setECommerceItems] = useState<any>('')
 
   useEffect(() => {
     const callAsyncMethods = async () => {
@@ -16,7 +16,7 @@ const eCommerceExamples: FunctionComponent = () => {
 
       // function getEcommerceItems(): Promise<object>
       const ecItem = await eCommerce.getEcommerceItems()
-      setECommerceInfo(ecItem)
+      setECommerceItems(ecItem)
 
       // function removeEcommerceItem(productSKU: string): void
       eCommerce.removeEcommerceItem('1')
@@ -105,7 +105,7 @@ const eCommerceExamples: FunctionComponent = () => {
           onClick={() => {
             const callAsyncMethods = async () => {
               const ecItem = await eCommerce.getEcommerceItems()
-              setECommerceInfo(ecItem)
+              setECommerceItems(ecItem)
             }
 
             callAsyncMethods()

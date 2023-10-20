@@ -1,7 +1,7 @@
 import {PageData} from '@/types/pageData'
 import CustomDimensionResults from '@/src/components/CustomDimensions/CustomDimensionResults'
 import Head from 'next/head'
-import utilStyles from '../../styles/utils.module.css'
+import utilStyles from '@/styles/utils.module.css'
 import {NextPage} from 'next'
 
 const getPageData = (): PageData => (

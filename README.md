@@ -47,7 +47,7 @@ in the example below).
 
 #### layout.tsx
 
-```ts
+```tsx
 'use client'
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
@@ -56,17 +56,17 @@ export default function RootLayout({children}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang = "en" >
-    <body>
-      <PiwikProProvider
-        containerId = "container-id"
-  containerUrl = "container-url"
-    >
-    {children}
-    < /PiwikProProvider>
-    < /body>
-    < /html>
-)
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerId="container-id"
+          containerUrl="container-url"
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
+  )
 }
 ```
 
@@ -85,7 +85,7 @@ NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 
 #### layout.tsx
 
-```ts
+```tsx
 'use client'
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
@@ -94,17 +94,17 @@ export default function RootLayout({children}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang = "en" >
-    <body>
-      <PiwikProProvider
-        containerUrl = {process.env.NEXT_PUBLIC_CONTAINER_URL}
-  containerId = {process.env.NEXT_PUBLIC_CONTAINER_ID}
-    >
-    {children}
-    < /PiwikProProvider>
-    < /body>
-    < /html>
-)
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerId={process.env.NEXT_PUBLIC_CONTAINER_URL}
+          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_ID}
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
+  )
 }
 ```
 
@@ -122,7 +122,7 @@ method.
 
 #### layout.tsx
 
-```ts
+```tsx
 'use client'
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
@@ -131,18 +131,18 @@ export default function RootLayout({children}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang = "en" >
-    <body>
-      <PiwikProProvider
-        containerId = "container-id"
-  containerUrl = "container-url"
-  nonce = "nonce-string"
-    >
-    {children}
-    < /PiwikProProvider>
-    < /body>
-    < /html>
-)
+    <html lang="en">
+      <body>
+        <PiwikProProvider
+          containerId="container-id"
+          containerUrl="container-url"
+          nonce="nonce-string"
+        >
+          {children}
+        </PiwikProProvider>
+      </body>
+    </html>
+  )
 }
 ```
 
@@ -175,18 +175,14 @@ useEffect(() => {
 
 ### onClick
 
-```ts
+```tsx
 <button
-  onClick = {()
-=>
-{
-  CustomEvent.trackEvent('Post', pageData.title)
-}
-}
+  onClick={() => {
+    CustomEvent.trackEvent('Post', pageData.title)
+  }}
 >
-CustomEvent.trackEvent
-button
-< /button>
+  CustomEvent.trackEvent button
+</button>
 ```
 
 Below you can view the sample usage of the available methods from modules.

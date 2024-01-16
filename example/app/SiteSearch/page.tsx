@@ -1,4 +1,4 @@
-import {NextPage} from 'next'
+import { Metadata, NextPage } from 'next'
 import {PageData} from '@/types/pageData'
 import utilStyles from '@/styles/utils.module.css'
 import Head from 'next/head'
@@ -21,14 +21,15 @@ const getPageData = (): PageData => (
   }
 )
 
+export const metadata: Metadata = {
+  title: getPageData().title,
+}
+
 const SiteSearchPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
     <>
-      <Head>
-        <title>{pageData.title}</title>
-      </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
         <div>

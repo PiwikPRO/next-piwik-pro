@@ -3,7 +3,7 @@ import React from 'react'
 import utilStyles from '@/styles/utils.module.css'
 import Head from 'next/head'
 import DataLayerButton from '@/src/components/DataLayer/DataLayerButton'
-import {NextPage} from 'next'
+import { Metadata, NextPage } from 'next'
 
 const getPageData = (): PageData => (
   {
@@ -21,14 +21,15 @@ const getPageData = (): PageData => (
   }
 )
 
+export const metadata: Metadata = {
+  title: getPageData().title,
+}
+
 const DataLayerPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
     <>
-      <Head>
-        <title>{pageData.title}</title>
-      </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
         <div>

@@ -1,4 +1,4 @@
-import {NextPage} from 'next'
+import { Metadata, NextPage } from 'next'
 import ECommerceExamples from '@/src/components/eCommerce/eCommerceExamples'
 import {PageData} from '@/types/pageData'
 import utilStyles from '@/styles/utils.module.css'
@@ -51,13 +51,15 @@ const getPageData = (): PageData => (
     ]
   }
 )
+
+export const metadata: Metadata = {
+  title: getPageData().title,
+}
+
 const eCommercePage: NextPage = () => {
   const pageData = getPageData()
   return (
     <>
-      <Head>
-        <title>{pageData.title}</title>
-      </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
         <div>

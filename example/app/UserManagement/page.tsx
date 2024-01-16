@@ -1,8 +1,9 @@
-import {NextPage} from 'next'
+import { Metadata, NextPage } from 'next'
 import {PageData} from '@/types/pageData'
 import Head from 'next/head'
 import utilStyles from '@/styles/utils.module.css'
 import UserManagementExamples from '@/src/components/UserManagement/UserManagementExamples'
+import { Paper } from '@mui/material'
 
 const getPageData = (): PageData => (
   {
@@ -39,41 +40,44 @@ const getPageData = (): PageData => (
   }
 )
 
+export const metadata: Metadata = {
+  title: getPageData().title,
+}
+
 const UserManagementPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
     <>
-      <Head>
-        <title>{pageData.title}</title>
-      </Head>
-      <article>
-        <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
-        <div>
-          <p>{pageData.description}</p>
-        </div>
-        <h2 className={utilStyles.headingXl}>Import</h2>
-        <div>
-          <p>
-            <code>
-              {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
-              <br/>
-              {'const { UserManagement } = usePiwikPro()'}
-            </code>
-          </p>
-        </div>
-        <h2 className={utilStyles.headingXl}>Methods</h2>
-        <div>
-          <ul className={utilStyles.list}>
-            {pageData.methods.map(({usage, desc, method}) => (
-              <li className={utilStyles.listItem} key={method}>
-                <code>{usage}</code> - {desc}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <UserManagementExamples/>
-      </article>
+      <Paper sx={{ p: 2 }}>
+        <article>
+          <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
+          <div>
+            <p>{pageData.description}</p>
+          </div>
+          <h2 className={utilStyles.headingXl}>Import</h2>
+          <div>
+            <p>
+              <code>
+                {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+                <br />
+                {'const { UserManagement } = usePiwikPro()'}
+              </code>
+            </p>
+          </div>
+          <h2 className={utilStyles.headingXl}>Methods</h2>
+          <div>
+            <ul className={utilStyles.list}>
+              {pageData.methods.map(({ usage, desc, method }) => (
+                <li className={utilStyles.listItem} key={method}>
+                  <code>{usage}</code> - {desc}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <UserManagementExamples />
+        </article>
+      </Paper>
     </>
   )
 }

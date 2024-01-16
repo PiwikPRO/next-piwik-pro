@@ -1,11 +1,12 @@
 'use client'
 
 import utilStyles from '@/styles/utils.module.css'
-import {FunctionComponent, useEffect, useState} from 'react'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
+import { FunctionComponent, useEffect, useState } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { Button } from '@mui/material'
 
 const UserManagementExamples: FunctionComponent = () => {
-  const {UserManagement} = usePiwikPro()
+  const { UserManagement } = usePiwikPro()
 
   const [userId, setUserId] = useState<string>('')
   const [visitorId, setVisitorId] = useState<string>('')
@@ -57,19 +58,22 @@ const UserManagementExamples: FunctionComponent = () => {
       </p>
       <p>
         You can use methods from that collection in page props for example{' '}
-        <code>useEffect</code> (methods are invoked when the page starts) or
-        as on example below on the button click using <code>onClick</code>{' '}
-        prop.
+        <code>useEffect</code> (methods are invoked when the page starts) or as
+        on example below on the button click using <code>onClick</code> prop.
       </p>
       <div>
-        <button
+        <Button
+          sx={{ ml: 2, mt: 2 }}
+          variant='contained'
           onClick={() => {
             UserManagement.setUserId('UserIdButton')
           }}
         >
           UserManagement.setUserId
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ ml: 2, mt: 2 }}
+          variant='contained'
           onClick={() => {
             const callAsyncMethods = async () => {
               const uId = await UserManagement.getUserId()
@@ -80,8 +84,10 @@ const UserManagementExamples: FunctionComponent = () => {
           }}
         >
           UserManagement.getUserId
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ ml: 2, mt: 2 }}
+          variant='contained'
           onClick={() => {
             const callAsyncMethods = async () => {
               const vId = await UserManagement.getVisitorId()
@@ -92,8 +98,10 @@ const UserManagementExamples: FunctionComponent = () => {
           }}
         >
           UserManagement.getVisitorId
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ ml: 2, mt: 2 }}
+          variant='contained'
           onClick={() => {
             const callAsyncMethods = async () => {
               const vInfo = await UserManagement.getVisitorInfo()
@@ -104,14 +112,16 @@ const UserManagementExamples: FunctionComponent = () => {
           }}
         >
           UserManagement.getVisitorInfo
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ ml: 2, mt: 2 }}
+          variant='contained'
           onClick={() => {
             UserManagement.resetUserId()
           }}
         >
           UserManagement.resetUserId
-        </button>
+        </Button>
       </div>
     </>
   )

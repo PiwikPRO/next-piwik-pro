@@ -30,7 +30,6 @@ const getPageData = (): PageData => (
   }
 )
 
-
 const ContentTrackingPage: NextPage = () => {
   const pageData = getPageData()
 

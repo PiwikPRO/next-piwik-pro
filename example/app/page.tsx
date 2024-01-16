@@ -2,6 +2,7 @@ import Head from 'next/head'
 import utilStyles from '@/styles/utils.module.css'
 import React from 'react'
 import Link from 'next/link'
+import { Metadata } from 'next'
 
 const EXAMPLES: string[] = [
   'ContentTracking',
@@ -15,12 +16,13 @@ const EXAMPLES: string[] = [
   'UserManagement'
 ]
 
+export const metadata: Metadata = {
+  title: 'Piwik PRO - Nextjs 13 examples',
+}
+
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Piwik PRO - Nextjs 13 examples</title>
-      </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Examples of usage </h2>
         <ul className={utilStyles.list}>

@@ -1,12 +1,17 @@
-import {FunctionComponent} from "react";
-import {usePiwikPro} from "@piwikpro/next-piwik-pro";
+'use client'
+
+import { FunctionComponent } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { Button } from '@mui/material'
 
 const TrackContentButtons: FunctionComponent = () => {
-  const {ContentTracking} = usePiwikPro()
+  const { ContentTracking } = usePiwikPro()
 
   return (
     <div>
-      <button
+      <Button
+        variant='contained'
+        sx={{ mt: 2, mr: 2 }}
         onClick={() => {
           ContentTracking.trackContentImpression(
             'contentName',
@@ -16,8 +21,10 @@ const TrackContentButtons: FunctionComponent = () => {
         }}
       >
         ContentTracking.trackEvent
-      </button>
-      <button
+      </Button>
+      <Button
+        variant='contained'
+        sx={{ mt: 2, mr: 2 }}
         onClick={() => {
           ContentTracking.trackContentInteraction(
             'contentInteraction',
@@ -28,7 +35,7 @@ const TrackContentButtons: FunctionComponent = () => {
         }}
       >
         ContentTracking.trackContentInteraction
-      </button>
+      </Button>
     </div>
   )
 }

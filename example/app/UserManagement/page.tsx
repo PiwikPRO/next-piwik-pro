@@ -1,47 +1,44 @@
 import { Metadata, NextPage } from 'next'
-import {PageData} from '@/types/pageData'
-import Head from 'next/head'
+import { PageData } from '@/types/pageData'
 import utilStyles from '@/styles/utils.module.css'
 import UserManagementExamples from '@/src/components/UserManagement/UserManagementExamples'
 import { Paper } from '@mui/material'
 
-const getPageData = (): PageData => (
-  {
-    title: 'UserManagement',
-    heading: 'User Management',
-    description: 'Allow api calls to interact with user data.',
-    methods: [
-      {
-        method: 'getUserId',
-        usage: 'UserManagement.getUserId()',
-        desc: 'The function that will return user ID.'
-      },
-      {
-        method: 'setUserId',
-        usage: 'UserManagement.setUserId(userId: string)',
-        desc: 'User ID is an additional parameter that allows you to aggregate data. When set up, you will be able to search through sessions by this parameter, filter reports through it or create Multi attribution reports using User ID.'
-      },
-      {
-        method: 'resetUserId',
-        usage: 'UserManagement.resetUserId()',
-        desc: 'Clears previously set userID, e.g. when visitor logs out.'
-      },
-      {
-        method: 'getVisitorId',
-        usage: 'UserManagement.getVisitorId()',
-        desc: 'Returns 16-character hex ID of the visitor.'
-      },
-      {
-        method: 'getVisitorInfo',
-        usage: 'UserManagement.getVisitorInfo()',
-        desc: 'Returns 16-character hex ID of the visitor.'
-      }
-    ]
-  }
-)
+const getPageData = (): PageData => ({
+  title: 'UserManagement',
+  heading: 'User Management',
+  description: 'Allow api calls to interact with user data.',
+  methods: [
+    {
+      method: 'getUserId',
+      usage: 'UserManagement.getUserId()',
+      desc: 'The function that will return user ID.'
+    },
+    {
+      method: 'setUserId',
+      usage: 'UserManagement.setUserId(userId: string)',
+      desc: 'User ID is an additional parameter that allows you to aggregate data. When set up, you will be able to search through sessions by this parameter, filter reports through it or create Multi attribution reports using User ID.'
+    },
+    {
+      method: 'resetUserId',
+      usage: 'UserManagement.resetUserId()',
+      desc: 'Clears previously set userID, e.g. when visitor logs out.'
+    },
+    {
+      method: 'getVisitorId',
+      usage: 'UserManagement.getVisitorId()',
+      desc: 'Returns 16-character hex ID of the visitor.'
+    },
+    {
+      method: 'getVisitorInfo',
+      usage: 'UserManagement.getVisitorInfo()',
+      desc: 'Returns 16-character hex ID of the visitor.'
+    }
+  ]
+})
 
 export const metadata: Metadata = {
-  title: getPageData().title,
+  title: getPageData().title
 }
 
 const UserManagementPage: NextPage = () => {

@@ -21,13 +21,15 @@ export default function RootLayout({
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             maxSnack={10}
           >
-            <Box sx={{ display: 'flex' }}>
-              <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
-                <Grid container spacing={3}>
-                  <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-                </Grid>
-              </Container>
-            </Box>
+            <AppRouterCacheProvider>
+              <Box sx={{ display: 'flex' }}>
+                <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
+                  <Grid container spacing={3}>
+                    {children}
+                  </Grid>
+                </Container>
+              </Box>
+            </AppRouterCacheProvider>
           </SnackbarProvider>
         </body>
       </html>

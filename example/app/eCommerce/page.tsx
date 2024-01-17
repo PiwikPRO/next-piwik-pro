@@ -1,7 +1,6 @@
 import { Metadata, NextPage } from 'next'
 import ECommerceExamples from '@/src/components/eCommerce/eCommerceExamples'
 import { PageData } from '@/types/pageData'
-import utilStyles from '@/styles/utils.module.css'
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
@@ -60,11 +59,11 @@ const eCommercePage: NextPage = () => {
     <>
       <Paper sx={{ p: 2 }}>
         <article>
-          <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
+          <h1>{pageData.heading}</h1>
           <div>
             <p>{pageData.description}</p>
           </div>
-          <h2 className={utilStyles.headingXl}>Import</h2>
+          <h2>Import</h2>
           <div>
             <p>
               <code>
@@ -74,11 +73,11 @@ const eCommercePage: NextPage = () => {
               </code>
             </p>
           </div>
-          <h2 className={utilStyles.headingXl}>Methods</h2>
+          <h2>Methods</h2>
           <div>
-            <List className={utilStyles.list}>
+            <List>
               {pageData.methods.map(({ usage, desc, method }) => (
-                <ListItem className={utilStyles.listItem} key={method}>
+                <ListItem key={method}>
                   <ListItemText>
                     <code>{usage}</code> - {desc}
                   </ListItemText>

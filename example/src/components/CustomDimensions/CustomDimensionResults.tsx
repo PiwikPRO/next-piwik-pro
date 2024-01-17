@@ -1,20 +1,8 @@
 'use client'
 
-import {
-  Dispatch,
-  FunctionComponent,
-  SetStateAction,
-  useEffect,
-  useState
-} from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import utilStyles from '@/styles/utils.module.css'
 import { Button } from '@mui/material'
-
-export type CustomDimensionButtonsProps = {
-  customDimValue: string
-  setCustomDimValue: Dispatch<SetStateAction<string>>
-}
 
 const CustomDimensionResults: FunctionComponent = () => {
   const { CustomDimensions } = usePiwikPro()
@@ -46,7 +34,7 @@ const CustomDimensionResults: FunctionComponent = () => {
           {customDimValue}
         </p>
       </div>
-      <h2 className={utilStyles.headingXl}>Sample usage</h2>
+      <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
         browser and track results on the console.

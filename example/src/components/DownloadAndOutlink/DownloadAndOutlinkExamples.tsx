@@ -1,11 +1,10 @@
 'use client'
 
-import {FunctionComponent, useEffect, useState} from 'react'
-import utilStyles from '@/styles/utils.module.css'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
+import { FunctionComponent, useEffect, useState } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
 
 const DownloadAndOutlinkExamples: FunctionComponent = () => {
-  const {DownloadAndOutlink} = usePiwikPro()
+  const { DownloadAndOutlink } = usePiwikPro()
 
   const [linkTrackingTimer, setLinkTrackingTimer] = useState<string>('')
 
@@ -55,16 +54,15 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
           {linkTrackingTimer}
         </p>
       </div>
-      <h2 className={utilStyles.headingXl}>Sample usage</h2>
+      <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
         browser and track results on the console.
       </p>
       <p>
         You can use methods from that collection in page props for example{' '}
-        <code>useEffect</code> (methods are invoked when the page starts) or
-        as on example below on the button click using <code>onClick</code>{' '}
-        prop.
+        <code>useEffect</code> (methods are invoked when the page starts) or as
+        on example below on the button click using <code>onClick</code> prop.
       </p>
       <div>
         <button
@@ -138,14 +136,14 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
         </button>
         <h2>Example download</h2>
         <div>
-          <a href="/files/example.zip">Download ZIP</a> - tracked download
-          <br/>
-          <a href="/files/example.pdf">Download PDF</a> - outlink
-          <br/>
-          <a href="/files/example.rar">Download RAR</a> - download tracked
+          <a href='/files/example.zip'>Download ZIP</a> - tracked download
+          <br />
+          <a href='/files/example.pdf'>Download PDF</a> - outlink
+          <br />
+          <a href='/files/example.rar'>Download RAR</a> - download tracked
           disabled by default, you can turn on/off by button
-          <br/>
-          <a className="do-not-track" href="/files/example.xlsx">
+          <br />
+          <a className='do-not-track' href='/files/example.xlsx'>
             Download XLSX
           </a>{' '}
           - download turned off by default using className

@@ -1,6 +1,5 @@
 'use client'
 
-import utilStyles from '@/styles/utils.module.css'
 import { FunctionComponent, useEffect, useState } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
 import { Button } from '@mui/material'
@@ -51,7 +50,7 @@ const UserManagementExamples: FunctionComponent = () => {
           {JSON.stringify(visitorInfo)}
         </p>
       </div>
-      <h2 className={utilStyles.headingXl}>Sample usage</h2>
+      <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
         browser and track results on the console.

@@ -1,7 +1,7 @@
 import { Metadata, NextPage } from 'next'
 import { PageData } from '@/types/pageData'
-import utilStyles from '@/styles/utils.module.css'
 import DownloadAndOutlinkExamples from '@/src/components/DownloadAndOutlink/DownloadAndOutlinkExamples'
+import { List, ListItem, ListItemText } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'DownloadAndOutlink',
@@ -74,11 +74,11 @@ const DownloadAndOutlinkPage: NextPage = () => {
   return (
     <>
       <article>
-        <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
+        <h1>{pageData.heading}</h1>
         <div>
           <p>{pageData.description}</p>
         </div>
-        <h2 className={utilStyles.headingXl}>Import</h2>
+        <h2>Import</h2>
         <div>
           <p>
             <code>
@@ -88,15 +88,17 @@ const DownloadAndOutlinkPage: NextPage = () => {
             </code>
           </p>
         </div>
-        <h2 className={utilStyles.headingXl}>Methods</h2>
+        <h2>Methods</h2>
         <div>
-          <ul className={utilStyles.list}>
+          <List>
             {pageData.methods.map(({ usage, desc, method }) => (
-              <li className={utilStyles.listItem} key={method}>
-                <code>{usage}</code> - {desc}
-              </li>
+              <ListItem key={method}>
+                <ListItemText>
+                  <code>{usage}</code> - {desc}
+                </ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </div>
         <DownloadAndOutlinkExamples />
       </article>

@@ -1,8 +1,7 @@
 import { Metadata, NextPage } from 'next'
 import { PageData } from '@/types/pageData'
-import utilStyles from '@/styles/utils.module.css'
 import PageViewsButton from '@/src/components/PageViews/PageViewsButton'
-import { Paper } from '@mui/material'
+import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'PageViews',
@@ -30,11 +29,11 @@ const PageViewsPage: NextPage = () => {
     <>
       <Paper sx={{ p: 2 }}>
         <article>
-          <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
+          <h1>{pageData.heading}</h1>
           <div>
             <p>{pageData.description}</p>
           </div>
-          <h2 className={utilStyles.headingXl}>Import</h2>
+          <h2>Import</h2>
           <div>
             <p>
               <code>
@@ -44,17 +43,19 @@ const PageViewsPage: NextPage = () => {
               </code>
             </p>
           </div>
-          <h2 className={utilStyles.headingXl}>Methods</h2>
+          <h2>Methods</h2>
           <div>
-            <ul className={utilStyles.list}>
+            <List>
               {pageData.methods.map(({ usage, desc, method }) => (
-                <li className={utilStyles.listItem} key={method}>
-                  <code>{usage}</code> - {desc}
-                </li>
+                <ListItem key={method}>
+                  <ListItemText>
+                    <code>{usage}</code> - {desc}
+                  </ListItemText>
+                </ListItem>
               ))}
-            </ul>
+            </List>
           </div>
-          <h2 className={utilStyles.headingXl}>Sample usage</h2>
+          <h2>Sample usage</h2>
           <p>
             To see tracking methods usage please turn developers tools in your
             browser and track results on the console.

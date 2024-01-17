@@ -1,9 +1,6 @@
 'use client'
 
-import {FunctionComponent, useEffect, useState} from 'react'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
-import utilStyles from '@/styles/utils.module.css'
-
+import { FunctionComponent, useEffect, useState } from 'react'
 import { eCommerce } from '@piwikpro/react-piwik-pro'
 import { useSnackbar } from 'notistack'
 import {

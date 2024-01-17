@@ -1,5 +1,4 @@
 import ContentTrackingPiwik from '@/src/components/ContentTracking/ContentTrackingPiwik'
-import utilStyles from '@/styles/utils.module.css'
 import TrackContentButtons from '@/src/components/ContentTracking/TrackContentButtons'
 import { PageData } from '@/types/pageData'
 import { NextPage } from 'next'
@@ -38,11 +37,11 @@ const ContentTrackingPage: NextPage = () => {
       <Paper sx={{ p: 2 }}>
         <ContentTrackingPiwik />
         <article>
-          <h1 className={utilStyles.headingXl}>{pageData.heading}</h1>
+          <h1>{pageData.heading}</h1>
           <div>
             <p>{pageData.description}</p>
           </div>
-          <h2 className={utilStyles.headingXl}>Import</h2>
+          <h2>Import</h2>
           <div>
             <p>
               <code>
@@ -52,11 +51,11 @@ const ContentTrackingPage: NextPage = () => {
               </code>
             </p>
           </div>
-          <h2 className={utilStyles.headingXl}>Methods</h2>
+          <h2>Methods</h2>
           <div>
-            <List className={utilStyles.list}>
+            <List>
               {pageData.methods.map(({ usage, desc, method }) => (
-                <ListItem className={utilStyles.listItem} key={method}>
+                <ListItem key={method}>
                   <ListItemText>
                     <code>{usage}</code> - {desc}
                   </ListItemText>
@@ -64,7 +63,7 @@ const ContentTrackingPage: NextPage = () => {
               ))}
             </List>
           </div>
-          <h2 className={utilStyles.headingXl}>Sample usage</h2>
+          <h2>Sample usage</h2>
           <p>
             To see tracking methods usage please turn developers tools in your
             browser and track results on the console.

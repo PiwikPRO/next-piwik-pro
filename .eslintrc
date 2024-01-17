@@ -7,7 +7,7 @@
     "standard",
     "standard-react",
     "plugin:prettier/recommended",
-    "prettier/standard",
+    "prettier",
     "prettier/react",
     "plugin:@typescript-eslint/eslint-recommended"
   ],

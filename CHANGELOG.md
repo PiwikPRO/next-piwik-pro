@@ -9,7 +9,7 @@
 
 - Use new react-piwik-pro package version (1.3.1) with new ecommerce methods.
 - Add new ecommerce methods to the example.
-- react and next now as peerDependencies.
+- next now as peerDependencies.
 
 ## 2.0.0
 

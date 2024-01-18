@@ -31,12 +31,12 @@ const getPageData = (): PageData => ({
       desc: 'Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline'
     },
     {
-      method: 'trackEcommerceOrder',
+      method: 'ecommerceOrder',
       usage: 'eCommerce.trackEcommerceOrder()',
       desc: 'Tracks a successfully placed e-commerce order with items present in a virtual cart (registered using addEcommerceItem).'
     },
     {
-      method: 'trackEcommerceCartUpdate',
+      method: 'updateEcommerceCart',
       usage: 'eCommerce.trackEcommerceCartUpdate(cartAmount: number)',
       desc: 'Tracks items present in a virtual shopping cart (registered with addEcommerceItem)'
     },

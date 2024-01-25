@@ -10,40 +10,30 @@ const getPageData = (): PageData => ({
     'Collection of methods to handle eCommerce events through the Piwik PRO API.',
   methods: [
     {
-      method: 'addEcommerceItem',
-      usage:
-        'eCommerce.addEcommerceItem(productSKU: string, productName: string, productCategory: string | string[], productPrice: number, productQuantity: number)',
-      desc: 'Adds a product to a virtual shopping cart. If a product with the same SKU is in the cart, it will be removed first. Does not send any data to the Collecting & Processing Pipeline.'
+      method: 'ecommerceAddToCart',
+      usage: 'ecommerce.ecommerceAddToCart(products: Product[])',
+      desc: 'Tracks action of adding products to a cart.'
     },
     {
-      method: 'removeEcommerceItem',
-      usage: 'eCommerce.removeEcommerceItem(productSKU: string)',
-      desc: '  Removes a product with the provided SKU from a virtual shopping cart. If multiple units of that product are in the virtual cart, all of them will be removed. Does not send any data to the Collecting & Processing Pipeline.'
-    },
-    {
-      method: 'clearEcommerceCart',
-      usage: 'eCommerce.clearEcommerceCart()',
-      desc: 'Removes all items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline.'
-    },
-    {
-      method: 'getEcommerceItems',
-      usage: 'eCommerce.getEcommerceItems()',
-      desc: 'Returns a copy of items from a virtual shopping cart. Does not send any data to the Collecting & Processing Pipeline'
+      method: 'ecommerceRemoveFromCart',
+      usage: 'ecommerce.ecommerceRemoveFromCart(products: Product[])',
+      desc: 'Tracks action of removing a products from a cart.'
     },
     {
       method: 'ecommerceOrder',
-      usage: 'eCommerce.trackEcommerceOrder()',
-      desc: 'Tracks a successfully placed e-commerce order with items present in a virtual cart (registered using addEcommerceItem).'
-    },
-    {
-      method: 'updateEcommerceCart',
-      usage: 'eCommerce.trackEcommerceCartUpdate(cartAmount: number)',
-      desc: 'Tracks items present in a virtual shopping cart (registered with addEcommerceItem)'
-    },
-    {
-      method: 'setEcommerceView',
       usage:
-        'eCommerce.setEcommerceView(productSKU: string, productName?: string, productCategory?: string[], productPrice?: string)',
+        'eCommerce.ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)',
+      desc: 'Tracks conversion (including products and payment details).'
+    },
+    {
+      method: 'ecommerceCartUpdate',
+      usage:
+        "eCommerce.ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])",
+      desc: 'Tracks current state of a cart.'
+    },
+    {
+      method: 'ecommerceProductDetailView',
+      usage: 'eCommerce.ecommerceProductDetailView(products: Product[])',
       desc: 'Tracks product or category view. Must be followed by a page view.'
     }
   ]

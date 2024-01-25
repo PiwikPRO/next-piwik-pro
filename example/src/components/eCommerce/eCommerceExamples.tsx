@@ -106,8 +106,8 @@ const eCommerceExamples: FunctionComponent = () => {
   const { enqueueSnackbar } = useSnackbar()
 
   const handlelAddToCart = (product: Product) => {
-    enqueueSnackbar(`eCommerce.addEcommerceItem()`, { variant: 'success' })
-    eCommerce.addEcommerceItem([
+    enqueueSnackbar(`eCommerce.ecommerceAddToCart()`, { variant: 'success' })
+    eCommerce.ecommerceAddToCart([
       {
         ...product,
         quantity: 1
@@ -149,15 +149,17 @@ const eCommerceExamples: FunctionComponent = () => {
       discount
     }
 
-    enqueueSnackbar(`eCommerce.trackEcommerceOrder()`, { variant: 'success' })
+    enqueueSnackbar(`eCommerce.ecommerceOrder()`, { variant: 'success' })
     eCommerce.ecommerceOrder(cart, paymentInformation)
   }
 
   const removeProduct = (product: Product) => {
     const newCart = cart.filter((item) => item.sku !== product.sku)
     setCart(newCart)
-    enqueueSnackbar(`eCommerce.removeEcommerceItem()`, { variant: 'success' })
-    eCommerce.removeEcommerceItem(newCart)
+    enqueueSnackbar(`eCommerce.ecommerceRemoveFromCart()`, {
+      variant: 'success'
+    })
+    eCommerce.ecommerceRemoveFromCart(newCart)
   }
 
   const increaseProductQuantity = (product: Product) => {
@@ -183,8 +185,8 @@ const eCommerceExamples: FunctionComponent = () => {
     const discount = 5
 
     setCart(newCart)
-    enqueueSnackbar(`eCommerce.updateEcommerceCart()`, { variant: 'success' })
-    eCommerce.updateEcommerceCart(newCart, subTotal + tax + shipping - discount)
+    enqueueSnackbar(`eCommerce.ecommerceCartUpdate()`, { variant: 'success' })
+    eCommerce.ecommerceCartUpdate(newCart, subTotal + tax + shipping - discount)
   }
 
   const [productDetailViewOpen, setProductDetailViewOpen] = useState(false)
@@ -197,14 +199,6 @@ const eCommerceExamples: FunctionComponent = () => {
       variant: 'success'
     })
     eCommerce.ecommerceProductDetailView([product])
-  }
-
-  const handleGetEcommerceItems = async () => {
-    const ecommerceItems = await eCommerce.getEcommerceItems()
-    console.log(ecommerceItems)
-    enqueueSnackbar(`eCommerce.getEcommerceItems()`, {
-      variant: 'success'
-    })
   }
 
   return (
@@ -319,25 +313,6 @@ const eCommerceExamples: FunctionComponent = () => {
         </Paper>
       </Grid>
 
-      <Grid item sm={12}>
-        <Paper
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              variant='contained'
-              onClick={handleGetEcommerceItems}
-              sx={{ ml: 1 }}
-            >
-              Get eCommerceItems
-            </Button>
-          </Box>
-        </Paper>
-      </Grid>
       <ProductDetailView
         product={selectedProduct}
         isOpen={productDetailViewOpen}

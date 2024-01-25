@@ -1,6 +1,6 @@
 {
-  "name": "example-v13",
-  "version": "0.1.0",
+  "name": "next-piwik-pro-example",
+  "version": "2.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,21 +10,28 @@
     "test": "jest -u"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.4",
+    "@mui/material": "^5.15.4",
+    "@mui/material-nextjs": "^5.15.3",
     "@piwikpro/next-piwik-pro": "file:../dist",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "next": "14.0.2",
+    "notistack": "^3.0.1",
+    "react": "18.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@types/node": "20.11.1",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "eslint": "8.56.0",
+    "eslint-config-next": "^14.0.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "typescript": "latest"
+    "typescript": "5.3.3",
+    "prettier": "^3.2.2"
   }
 }

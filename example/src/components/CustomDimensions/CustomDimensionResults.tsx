@@ -1,16 +1,11 @@
 'use client'
 
-import {Dispatch, FunctionComponent, SetStateAction, useEffect, useState} from 'react'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
-import utilStyles from '@/styles/utils.module.css'
-
-export type CustomDimensionButtonsProps = {
-  customDimValue: string
-  setCustomDimValue: Dispatch<SetStateAction<string>>
-}
+import { FunctionComponent, useEffect, useState } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { Button } from '@mui/material'
 
 const CustomDimensionResults: FunctionComponent = () => {
-  const {CustomDimensions} = usePiwikPro()
+  const { CustomDimensions } = usePiwikPro()
 
   const [customDimValue, setCustomDimValue] = useState<string>('')
 
@@ -39,29 +34,31 @@ const CustomDimensionResults: FunctionComponent = () => {
           {customDimValue}
         </p>
       </div>
-      <h2 className={utilStyles.headingXl}>Sample usage</h2>
+      <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
         browser and track results on the console.
       </p>
       <p>
         You can use methods from that collection in page props for example{' '}
-        <code>useEffect</code> (methods are invoked when the page starts) or
-        as on example below on the button click using <code>onClick</code>{' '}
-        prop.
+        <code>useEffect</code> (methods are invoked when the page starts) or as
+        on example below on the button click using <code>onClick</code> prop.
       </p>
-      <button
+      <Button
+        variant='contained'
+        sx={{ mt: 2, mr: 2 }}
         onClick={() => {
           CustomDimensions.setCustomDimensionValue(12, 'valueFromButton')
         }}
       >
         CustomDimensions.setCustomDimensionValue
-      </button>
-      <button
+      </Button>
+      <Button
+        variant='contained'
+        sx={{ mt: 2, mr: 2 }}
         onClick={() => {
           const callAsyncMethods = async () => {
-            const cDimValue =
-              await CustomDimensions.getCustomDimensionValue(12)
+            const cDimValue = await CustomDimensions.getCustomDimensionValue(12)
             setCustomDimValue(cDimValue)
           }
 
@@ -69,14 +66,16 @@ const CustomDimensionResults: FunctionComponent = () => {
         }}
       >
         CustomDimensions.getCustomDimensionValue
-      </button>
-      <button
+      </Button>
+      <Button
+        variant='contained'
+        sx={{ mt: 2, mr: 2 }}
         onClick={() => {
           CustomDimensions.deleteCustomDimension('12')
         }}
       >
         CustomDimensions.deleteCustomDimension
-      </button>
+      </Button>
     </div>
   )
 }

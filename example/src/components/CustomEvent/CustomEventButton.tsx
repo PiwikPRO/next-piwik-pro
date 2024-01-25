@@ -1,14 +1,15 @@
 'use client'
 
-import React, {FunctionComponent, useEffect} from 'react'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
+import React, { FunctionComponent, useEffect } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { Button } from '@mui/material'
 
 type Props = {
   title: string
 }
 
-const CustomEventButton: FunctionComponent<Props> = ({title}) => {
-  const {CustomEvent} = usePiwikPro()
+const CustomEventButton: FunctionComponent<Props> = ({ title }) => {
+  const { CustomEvent } = usePiwikPro()
 
   useEffect(() => {
     // function trackEvent(category: string, action: string, name?: string | undefined, value?: number | undefined): void
@@ -16,13 +17,15 @@ const CustomEventButton: FunctionComponent<Props> = ({title}) => {
   }, [])
 
   return (
-    <button
+    <Button
+      variant='contained'
+      sx={{ mt: 2 }}
       onClick={() => {
         CustomEvent.trackEvent('Button', title)
       }}
     >
       CustomEvent.trackEvent
-    </button>
+    </Button>
   )
 }
 

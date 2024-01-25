@@ -1,10 +1,11 @@
 'use client'
 
-import {FunctionComponent, useEffect} from 'react'
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
+import { FunctionComponent, useEffect } from 'react'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { Button } from '@mui/material'
 
 const SiteSearchButton: FunctionComponent = () => {
-  const {SiteSearch} = usePiwikPro()
+  const { SiteSearch } = usePiwikPro()
 
   useEffect(() => {
     // function trackSiteSearch(keyword: string, category?: string | undefined, searchCount?: number | undefined, dimensions?: Object | undefined): void
@@ -12,13 +13,15 @@ const SiteSearchButton: FunctionComponent = () => {
   }, [])
 
   return (
-    <button
+    <Button
+      variant='contained'
+      sx={{ mt: 2 }}
       onClick={() => {
         SiteSearch.trackSiteSearch('keyword', 'button', 4)
       }}
     >
       SiteSearch.trackSiteSearch
-    </button>
+    </Button>
   )
 }
 

@@ -109,7 +109,7 @@ export default function RootLayout({children}: {
 ```
 
 ```
-> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
+> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'containerUrl'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce

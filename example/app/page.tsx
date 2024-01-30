@@ -29,8 +29,8 @@ const Home = () => {
           <List>
             {EXAMPLES.map((id) => (
               <ListItem key={id}>
-                <ListItemButton>
-                  <Link href={`/${id}`}>{id}</Link>
+                <ListItemButton component={Link} href={`/${id}`}>
+                  {id}
                 </ListItemButton>
               </ListItem>
             ))}

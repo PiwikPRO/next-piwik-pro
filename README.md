@@ -331,8 +331,8 @@ const products = [{
   variant: 'Variant 4',
   price: 39.96,
   customDimensions: {
-    dimension1: 'value1',
-    dimension2: 'value2'
+    1: 'value1',
+    2: 'value2'
   }
 }]
 

@@ -133,3 +133,5 @@ dist
 .DS_Store
 .idea
 package
+
+docs_raw

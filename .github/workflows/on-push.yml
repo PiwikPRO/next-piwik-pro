@@ -1,25 +1,25 @@
-name: Monorepo development pipeline
+name: Test
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
-    branches: [master]
-  workflow_dispatch:
+    branches:
+      - master
 
 jobs:
-  build-library:
+  run-tests:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Use NodeJS 18
-        uses: actions/setup-node@v3.3.0
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
         with:
-          node-version: "18"
-          cache: "npm"
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install library dependencies
         run: npm ci

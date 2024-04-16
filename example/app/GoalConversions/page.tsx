@@ -1,6 +1,6 @@
 import { Metadata, NextPage } from 'next'
 import { PageData } from '@/types/pageData'
-import GoalConvetionsButton from '@/src/components/GoalConversions/GoalConvetionsButton'
+import GoalConversionsButton from '@/src/components/GoalConversions/GoalConversionsButton'
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
@@ -67,7 +67,7 @@ const GoalConversionsPage: NextPage = () => {
             prop.
           </p>
           <div>
-            <GoalConvetionsButton />
+            <GoalConversionsButton />
           </div>
         </article>
       </Paper>

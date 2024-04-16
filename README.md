@@ -1,25 +1,11 @@
+
+<a name="readmemd"></a>
+
+
 # Piwik PRO Library for Next.js
 
 Dedicated Piwik PRO library that helps with implementing Piwik PRO Tag Manager and the Piwik PRO tracking client in
 Next.js applications.
-
-- [Installation](#installation)
-    - [NPM](#npm)
-    - [Basic setup](#basic-setup)
-    - [Setup with nonce](#setup-with-nonce)
-- [Supported methods list and usage](#supported-methods-list-and-usage)
-    - [Analytics](#analytics)
-        - [Page views](#send-page-views-and-virtual-page-views)
-        - [User Management](#user-management)
-        - [Custom Events](#custom-events)
-        - [Site search](#site-search)
-        - [E-commerce](#e-commerce)
-        - [Content Tracking](#content-tracking)
-        - [Downloads and outlinks](#downloads-and-outlinks)
-        - [Goal Conversions](#goal-conversions)
-        - [Custom Dimensions](#custom-dimensions)
-    - [Tag Manager](#tag-manager)
-        - [Data layer](#data-layer)
 
 ## Installation
 
@@ -97,8 +83,8 @@ export default function RootLayout({children}: {
     <html lang="en">
       <body>
         <PiwikProProvider
-          containerUrl = {process.env.NEXT_PUBLIC_CONTAINER_URL}
-          containerId = {process.env.NEXT_PUBLIC_CONTAINER_ID}
+          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
+          containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
         >
           {children}
         </PiwikProProvider>
@@ -106,10 +92,6 @@ export default function RootLayout({children}: {
     </html>
   )
 }
-```
-
-```
-> Previously, we used 'accountName' to configure PiwikProProvider. The parameter has now been replaced by 'container-url'. The 'accountName' parameter is deprecated and will be removed in the future.
 ```
 
 ### Setup with nonce
@@ -146,7 +128,7 @@ export default function RootLayout({children}: {
 }
 ```
 
-## Supported methods list and usage
+## Usage
 
 To use methods in your page you need to include `usePiwikPro` from the library.
 Make sure to use `usePiwikPro` in client components only, otherwise you will get an error.
@@ -176,7 +158,7 @@ useEffect(() => {
 ### onClick
 
 ```tsx
-<button onClick = {() => {
+<button onClick={() => {
   CustomEvent.trackEvent('Post', pageData.title)
 }}>
 CustomEvent.trackEvent
@@ -184,419 +166,1322 @@ button
 </button>
 ```
 
-Below you can view the sample usage of the available methods from modules.
 
-### Analytics
+<a name="modulesmd"></a>
 
-#### Send page views and virtual page views
 
-```ts
-const {PageViews} = usePiwikPro()
 
-PageViews.trackPageView('optional title')
-```
+## Table of contents
 
-#### User management
+### Namespaces
 
-Collection of methods to handle users and visitors data through the Piwik PRO API.
+- [ContentTracking](#modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd)
+- [CookieManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd)
+- [CustomDimensions](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd)
+- [CustomEvent](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd)
+- [DataLayer](#modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd)
+- [DownloadAndOutlink](#modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd)
+- [GoalConversions](#modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd)
+- [PageViews](#modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd)
+- [SiteSearch](#modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd)
+- [UserManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd)
+- [eCommerce](#modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd)
 
-##### Methods
+### Type Aliases
 
-- `UserManagement.setUserId(userID)` - Sets user ID, which will help identify a user of your application across many
-  devices and browsers.
-    - `userID` (string) – Required Non-empty, unique ID of a user in application
-- `UserManagement.resetUserId()` - Clears previously set `userID`, e.g. when visitor logs out.
-- `UserManagement.getUserId()` - Returns currently used `userID` value (set with `setUserId()`).
-- `UserManagement.getVisitorId()` - Returns 16-character hex ID of the visitor.
-- `UserManagement.getVisitorInfo()` - Returns visitor information. Return type `string[]`. String array with the
-  following visitor info:
-    - `[0]` - new visitor flag indicating new, ("1") or returning ("0") visitor
-    - `[1]` - visitor ID (16-character hex number)
-    - `[2]` - first visit timestamp (UNIX epoch time)
-    - `[3]` - previous visit count ("0" for first visit)
-    - `[4]` - current visit timestamp (UNIX epoch time)
-    - `[5]` - last visit timestamp (UNIX epoch time or "" if N/A)
-    - `[6]` - last e-commerce order timestamp (UNIX epoch time or "" if N/A)
+- [Dimensions](#dimensions)
+- [PaymentInformation](#paymentinformation)
+- [Product](#product)
+- [VisitorInfo](#visitorinfo)
 
-##### Example usage
+### Variables
 
-```ts
-const {UserManagement} = usePiwikPro()
+- [default](#default)
 
-UserManagement.setUserId('UserId')
+## Type Aliases
 
-UserManagement.resetUserId()
-```
+### Dimensions
 
-Some of the methods are getting data from the API and they need to be called asynchronously. They provide data that can
-be shown on the page. This need to be done with defining async function in your hook body and setting the state of the
-variable. Like on example below.
+Ƭ **Dimensions**: `Record`\<\`dimension$\{number}\`, `string`\>
 
-```ts
-const {UserManagement} = usePiwikPro()
+___
 
-const [userId, setUserId] = useState<string>('')
-const [visitorId, setVisitorId] = useState<string>('')
-const [visitorInfo, setVisitorInfo] = useState<any>('')
+### PaymentInformation
 
-const callAsyncMethods = async () => {
-  const uId = await UserManagement.getUserId()
-  setUserId(uId)
+Ƭ **PaymentInformation**: `Object`
 
-  const vId = await UserManagement.getVisitorId()
-  setVisitorId(vId)
+#### Type declaration
 
-  const vInfo = await UserManagement.getVisitorInfo()
-  setVisitorInfo(vInfo)
-}
+| Name | Type |
+| :------ | :------ |
+| `discount?` | `number` \| `string` |
+| `grandTotal` | `number` \| `string` |
+| `orderId` | `string` |
+| `shipping?` | `number` \| `string` |
+| `subTotal?` | `number` \| `string` |
+| `tax?` | `number` \| `string` |
 
-callAsyncMethods()
-```
+___
 
-You have access to those variables in you page body. Example access below.
+### Product
 
-```html
-<p><code>UserManagement.getUserId()</code> - {userId}</p>
-<p><code>UserManagement.getVisitorId()</code> - {visitorId}</p>
-<p>
-    <code>UserManagement.getVisitorInfo()</code> -{' '}
-    {JSON.stringify(visitorInfo)}
-</p>
-```
+Ƭ **Product**: `Object`
 
-#### Custom Events
+#### Type declaration
 
-Collection of methods to handle custom events, not described in the other categories.
+| Name | Type |
+| :------ | :------ |
+| `brand?` | `string` |
+| `category?` | `LimitedArrayFiveStrings` |
+| `customDimensions?` | `Record`\<`number`, `string`\> |
+| `name?` | `string` |
+| `price?` | `number` |
+| `quantity?` | `number` |
+| `sku` | `string` |
+| `variant?` | `string` |
 
-##### Methods
+___
 
-- `CustomEvent.trackEvent(category, action[, name[, value[, dimensions]]])` - Tracks custom event, e.g. when visitor
-  interacts with the page.
-    - `category (string)` – Required Event category
-    - `action (string)` – Required Event action
-    - `name (string)` – Optional Event name
-    - `value (number)` – Optional Event value
+### VisitorInfo
 
-##### Example usage
+Ƭ **VisitorInfo**: [isNew: "0" \| "1", visitorId: string, firstVisitTS: number, previousVisitCount: string \| number, currentVisitTS: number, lastVisitTS: number \| "", lastEcommerceOrderTS: number \| ""]
 
-```ts
-const {CustomEvent} = usePiwikPro()
 
-CustomEvent.trackEvent('Post', pageData.title)
-```
 
-#### Site search
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd"></a>
 
-Collection of methods to track site search data, through the Piwik PRO API.
 
-##### Methods
+# ContentTracking
 
-- `SiteSearch.trackSiteSearch(keyword[, category[, resultCount[, dimensions]]])` - Tracks search requests on a website.
-    - `keyword (string)` – Required What keyword the visitor entered into the search box
-    - `category (string|Array<string>)` – Optional Category selected in the search engine
-    - `searchCount (number)` – Optional The number of search results shown
-    - `dimensions (object)` – Optional Custom dimensions to pass along with the site search event
 
-##### Example usage
+## Table of contents
 
-```ts
-const {SiteSearch} = usePiwikPro()
 
-SiteSearch.trackSiteSearch('keyword', 'category', 5)
-```
+- [logAllContentBlocksOnPage](#logallcontentblocksonpage)
+- [trackAllContentImpressions](#trackallcontentimpressions)
+- [trackContentImpression](#trackcontentimpression)
+- [trackContentImpressionsWithinNode](#trackcontentimpressionswithinnode)
+- [trackContentInteraction](#trackcontentinteraction)
+- [trackContentInteractionNode](#trackcontentinteractionnode)
+- [trackVisibleContentImpressions](#trackvisiblecontentimpressions)
 
-#### E-commerce
+## Functions
 
-Collection of methods to handle e-commerce events through the Piwik PRO API.
+### logAllContentBlocksOnPage
 
-##### Methods
+▸ **logAllContentBlocksOnPage**(): `void`
 
-#### Methods
-* `ecommerceAddToCart(products: Product[])` - Tracks action of adding products to a cart.
-* `ecommerceRemoveFromCart(products: Product[])` - Tracks action of removing a products from a cart.
-* `ecommerceOrder(products: Product[], paymentInformation: PaymentInformation)` - Tracks conversion (including products and payment details).
-* `ecommerceCartUpdate(products: Product[], grandTotal: PaymentInformation['grandTotal'])` - Tracks current state of a cart.
-* `ecommerceProductDetailView(products: Product[])` - Tracks product or category view. Must be followed by a page view.discount amount
+Print all content blocks to the console for debugging purposes
 
-##### Example usage
+#### Returns
 
-```ts
-const { eCommerce } = usePiwikPro()
+`void`
 
-const products = [{
-  sku: 'sku-4',
-  name: 'Product 4',
-  category: ['product-category', 'product-category-4'],
-  brand: 'Brand 4',
-  variant: 'Variant 4',
-  price: 39.96,
-  customDimensions: {
-    dimension1: 'value1',
-    dimension2: 'value2'
-  }
-}]
+___
 
-const subTotal = products.reduce((acc, product) => {
-  if (product.price) {
-    return acc + product.price
-  }
-  return acc
-}, 0)
+### trackAllContentImpressions
 
-const tax = 10
-const shipping = 4
-const discount = 5
+▸ **trackAllContentImpressions**(): `void`
 
-const paymentInformation: PaymentInformation = {
-  orderId: 'order-123',
-  grandTotal: subTotal + tax + shipping - discount,
-  subTotal,
-  tax,
-  shipping,
-  discount
-}
+Scans the entire DOM for content blocks and tracks impressions after all page
+elements load. It does not send duplicates on repeated calls unless
+trackPageView was called in between trackAllContentImpressions invocations
 
-eCommerce.ecommerceAddToCart(products)
+#### Returns
 
-eCommerce.ecommerceRemoveFromCart(products)
+`void`
 
-ecommerce.ecommerceOrder(products, paymentInformation)
+___
 
-eCommerce.ecommerceCartUpdate(products, paymentInformation.grandTotal)
+### trackContentImpression
 
-eCommerce.ecommerceProductDetailView(products)
+▸ **trackContentImpression**(`contentName`, `contentPiece`, `contentTarget`): `void`
 
-```
+#### Parameters
 
-#### Content Tracking
+| Name | Type |
+| :------ | :------ |
+| `contentName` | `string` |
+| `contentPiece` | `string` |
+| `contentTarget` | `string` |
 
-Collection of methods to track impressions through the Piwik PRO API.
+#### Returns
 
-##### Methods
+`void`
 
-- `ContentTracking.trackContentImpression(contentName, contentPiece, contentTarget)` - Tracks manual content impression
-  event.
+___
 
-    - `contentName (string)` – Required Name of a content block
-    - `contentPiece (string)` – Required Name of the content that was displayed (e.g. link to an image)
-    - `contentTarget (string)` – Required Where the content leads to (e.g. URL of some external website)
+### trackContentImpressionsWithinNode
 
-- `ContentTracking.trackContentInteraction(contentInteraction, contentName, contentPiece, contentTarget)` - Tracks
-  manual content interaction event.
-    - `contentInteraction (string)` – Required Type of interaction (e.g. "click")
-    - `contentName (string)` – Required Name of a content block
-    - `contentPiece` (string) – Required Name of the content that was displayed (e.g. link to an image)
-    - `contentTarget (string)` – Required Where the content leads to (e.g. URL of some external website)
+▸ **trackContentImpressionsWithinNode**(`domNode`): `void`
 
-##### Example usage
+#### Parameters
 
-```ts
-const {ContentTracking} = usePiwikPro()
+| Name | Type |
+| :------ | :------ |
+| `domNode` | `Node` |
 
-ContentTracking.trackContentImpression(
-  'contentName',
-  'contentPiece',
-  'contentTarget'
-)
+#### Returns
 
-ContentTracking.trackContentInteraction(
-  'contentInteraction',
-  'contentName',
-  'contentPiece',
-  'contentTarget'
-)
-```
+`void`
 
-#### Downloads and outlinks
+___
 
-Collection of methods to manually tracks outlink or download events through the Piwik PRO API.
+### trackContentInteraction
 
-##### Methods
+▸ **trackContentInteraction**(`contentInteraction`, `contentName`, `contentPiece`, `contentTarget`): `void`
 
-- `DownloadAndOutlink.trackLink(linkAddress, linkType[, dimensions[, callback]])` - Manually tracks outlink or download
-  event with provided values.
+Tracks manual content interaction event
 
-    - `linkAddress (string)` – Required URL address of the link
-    - `linkType (string)` – Required Type of the link, "link" for outlink, "download" for download
-    - `dimensions (object)` – Optional Custom dimensions to pass along with the link event
-    - `callback (function)` – Optional Function that should be called after tracking the link
+#### Parameters
 
-- `DownloadAndOutlink.enableLinkTracking([trackMiddleAndRightClicks])` - Enables automatic link tracking. By default,
-  left, right and middle clicks on links will be treated as opening a link. Opening a link to an external site (
-  different domain) creates an outlink event. Opening a link to a downloadable file creates a download event.
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `contentInteraction` | `string` | Type of interaction (e.g. "click") |
+| `contentName` | `string` | Name of a content block |
+| `contentPiece` | `string` | Name of the content that was displayed (e.g. link to an image) |
+| `contentTarget` | `string` | Where the content leads to (e.g. URL of some external website) |
 
-    - `trackMiddleAndRightClicks (boolean)` – Optional Whether to treat middle and right clicks as opening a link. The
-      default value is true.
+#### Returns
 
-- `DownloadAndOutlink.setLinkClasses(classes)` - Sets a list of class names that indicate whether a link is an outlink
-  and not download.
+`void`
 
-    - `classes (Array<string>)` – Required CSS class name or an array of class names
+___
 
-- `DownloadAndOutlink.setDownloadClasses(classes)` - Sets a list of class names that indicate whether a list is a
-  download and not an outlink.
+### trackContentInteractionNode
 
-    - `classes (Array<string>)` – Required CSS class name or an array of class names
+▸ **trackContentInteractionNode**(`domNode`, `contentInteraction?`): `void`
 
-- `DownloadAndOutlink.addDownloadExtensions(extensions)`
-  Adds new extensions to the download extensions list.
+Tracks interaction with a block in domNode. Can be called from code placed in onclick attribute
 
-    - `extensions (Array<string>)` – Required List of extensions to be added as an array, e.g. `["7z","apk","mp4"]`.
+#### Parameters
 
-- `DownloadAndOutlink.removeDownloadExtensions(extensions)` - Removes extensions from the download extensions list.
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domNode` | `Node` | Node marked as content block or containing content blocks. If content block can’t be found, nothing will tracked. |
+| `contentInteraction?` | `string` | Name of interaction (e.g. "click") |
 
-    - `extensions (Array<string>)` – Required List of extensions to remove as an array, e.g. ["zip", "rar"].
+#### Returns
 
-- `DownloadAndOutlink.setLinkTrackingTimer(milliseconds)` - When a visitor produces an events and closes the page
-  immediately afterwards, e.g. when opening a link, the request might get cancelled. To avoid loosing the last event
-  this way, JavaScript Tracking Client will lock the page for a fraction of a second (if wait time hasn’t passed),
-  giving the request time to reach the Collecting & Processing Pipeline. `setLinkTrackingTimer` allows to change the
-  default lock/wait time of 500ms.
+`void`
 
-    - `milliseconds (number)` – Required How many milliseconds a request needs to reach the Collecting & Processing
-      Pipeline.
+___
 
-- `DownloadAndOutlink.setIgnoreClasses(classes)` - Set a list of class names that indicate a link should not be tracked.
-    - `classes (Array<string>)` – Required CSS class name or an array of class names
+### trackVisibleContentImpressions
 
-##### Example usage
+▸ **trackVisibleContentImpressions**(`checkOnScroll?`, `watchInterval?`): `void`
 
-```ts
-const {DownloadAndOutlink} = usePiwikPro()
+Scans DOM for all visible content blocks and tracks impressions
 
-DownloadAndOutlink.trackLink('http://localhost:3000', 'link')
+#### Parameters
 
-DownloadAndOutlink.enableLinkTracking(true)
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `checkOnScroll?` | `boolean` | Whether to scan for visible content on scroll event |
+| `watchInterval?` | `number` | Delay, in milliseconds, between scans for new visible content. Periodic checks can be disabled by passing 0 |
 
-DownloadAndOutlink.setLinkClasses(['this-is-an-outlink'])
+#### Returns
 
-DownloadAndOutlink.setDownloadClasses(['this-is-a-download'])
+`void`
 
-DownloadAndOutlink.addDownloadExtensions(['zip', 'rar'])
 
-DownloadAndOutlink.removeDownloadExtensions(['doc', 'xls'])
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd"></a>
 
-DownloadAndOutlink.setLinkTrackingTimer(10)
 
-DownloadAndOutlink.setIgnoreClasses(['do-not-track'])
-```
+# CookieManagement
 
-Some of the methods are getting data from the API and they need to be called asynchronously. They provide data that can
-be shown no the page. This need to be done with defining async function in your hook body and setting the state of the
-variable. Like on example below.
 
-```ts
-const {DownloadAndOutlink} = usePiwikPro()
+## Table of contents
 
-const [linkTrackingTimer, setLinkTrackingTimer] = useState<string>('')
 
-const callAsyncMethods = async () => {
-  const lTrackingTimer = await DownloadAndOutlink.getLinkTrackingTimer()
-  setLinkTrackingTimer(lTrackingTimer)
-}
-```
+- [deleteCookies](#deletecookies)
+- [disableCookies](#disablecookies)
+- [enableCookies](#enablecookies)
+- [getConfigVisitorCookieTimeout](#getconfigvisitorcookietimeout)
+- [getCookieDomain](#getcookiedomain)
+- [getCookiePath](#getcookiepath)
+- [getSessionCookieTimeout](#getsessioncookietimeout)
+- [hasCookies](#hascookies)
+- [setCookieDomain](#setcookiedomain)
+- [setCookieNamePrefix](#setcookienameprefix)
+- [setCookiePath](#setcookiepath)
+- [setReferralCookieTimeout](#setreferralcookietimeout)
+- [setSecureCookie](#setsecurecookie)
+- [setSessionCookieTimeout](#setsessioncookietimeout)
+- [setVisitorCookieTimeout](#setvisitorcookietimeout)
+- [setVisitorIdCookie](#setvisitoridcookie)
 
-You have access to those variables in you page body. Example below.
+## Functions
 
-```html
-<p>
-    <code>DownloadAndOutlink.getLinkTrackingTimer()</code> -{' '}
-    {linkTrackingTimer}
-</p>
-```
+### deleteCookies
 
-#### Goal Conversions
+▸ **deleteCookies**(): `void`
 
-Collection of methods to manually tracks goal conversions through the Piwik PRO API.
+Deletes existing tracking cookies on the next page view
 
-##### Methods
+#### Returns
 
-- `GoalConversions.trackGoal(goalID[, conversionValue[, dimensions]])` - Tracks manual goal
-  conversion. `goalID (number|string)` – Required Goal ID (integer or UUID), `conversionValue (number)` – Optional
-  Conversion value (revenue), `dimensions (object)` – Optional Custom dimensions to pass along with the conversion
+`void`
 
-##### Example usage
+___
 
-```ts
-const {GoalConversions} = usePiwikPro()
+### disableCookies
 
-// function trackGoal(goalId: string | number, conversionValue: number, dimensions?: Object | undefined): void
-GoalConversions.trackGoal(1, 30)
-```
+▸ **disableCookies**(): `void`
 
-#### Custom Dimensions
+Disables all first party cookies. Existing cookies will be deleted in the next page view
 
-Collection of methods to manage custom dimensions through the Piwik PRO API.
+#### Returns
 
-##### Methods
+`void`
 
-- `CustomDimensions.setCustomDimensionValue(customDimensionID, customDimensionValue` - Sets a custom dimension to be
-  used later.
+___
 
-    - `customDimensionID (number)` – Required ID of a custom dimension, `customDimensionValue (string)` – Required Value
-      of a custom dimension
+### enableCookies
 
-- `CustomDimensions.deleteCustomDimension(customDimensionID)` - Removes a custom dimension with the specified ID.
+▸ **enableCookies**(): `void`
 
-    - `customDimensionID (number)` – Required ID of a custom dimension
+Enables all first party cookies. Cookies will be created on the next tracking request
 
-- `CustomDimensions.getCustomDimensionValue(customDimensionID)`- Returns the value of a custom dimension with the
-  specified ID. Returns: Value set with `setCustomDimensionValue` (e.g. `loginStatus`). Return type: `string`
-    - `customDimensionID (number)`– Required ID of a custom dimension.
+#### Returns
 
-##### Example usage
+`void`
 
-```ts
-const {CustomDimensions} = usePiwikPro()
+___
 
-CustomDimensions.setCustomDimensionValue('customDimensionId', 'value')
+### getConfigVisitorCookieTimeout
 
-CustomDimensions.getCustomDimensionValue('customDimensionId')
+▸ **getConfigVisitorCookieTimeout**(): `Promise`\<`number`\>
 
-CustomDimensions.deleteCustomDimension('customDimensionId')
-```
+Returns expiration time of visitor cookies (in milliseconds)
 
-Some of the methods are getting data from the API and they need to be called asynchronously. They provide data that can
-be shown on the page. This need to be done with defining async function in your hook body and setting the state of the
-variable. Like on example below.
+#### Returns
 
-```ts
-const {UserManagement} = usePiwikPro()
+`Promise`\<`number`\>
 
-const [customDimValue, setCustomDimValue] = useState<string>('')
+___
 
-const callAsyncMethods = async () => {
-  const cDimValue = await CustomDimensions.getCustomDimensionValue(12)
-  setCustomDimValue(cDimValue)
-}
+### getCookieDomain
 
-callAsyncMethods()
-```
+▸ **getCookieDomain**(): `Promise`\<`string`\>
 
-You have access to those variables in you page body. Example access below.
+Returns domain of the analytics tracking cookies (set with setCookieDomain()).
 
-```html
-<p>
-    <code>CustomDimensions.getCustomDimensionValue()</code> - {customDimValue}
-</p>
-```
+#### Returns
 
-### Tag Manager
+`Promise`\<`string`\>
 
-#### Data layer
+___
 
-A data layer is a data structure on your site or app where you can store data and access it with tools like Tag Manager.
-You can include any data you want in your data layer.
+### getCookiePath
 
-##### Methods
+▸ **getCookiePath**(): `Promise`\<`string`\>
 
-- `DataLayer.push(data)` - Adds an event to a data layer.
-    - `data` - Required data value without type.
+Returns the analytics tracking cookies path
 
-##### Example usage
+#### Returns
 
-```ts
-const {DataLayer} = usePiwikPro()
+`Promise`\<`string`\>
 
-DataLayer.push('data')
-```
+___
+
+### getSessionCookieTimeout
+
+▸ **getSessionCookieTimeout**(): `Promise`\<`number`\>
+
+Returns expiration time of session cookies
+
+#### Returns
+
+`Promise`\<`number`\>
+
+___
+
+### hasCookies
+
+▸ **hasCookies**(): `Promise`\<`boolean`\>
+
+Returns true if cookies are enabled in this browser
+
+#### Returns
+
+`Promise`\<`boolean`\>
+
+___
+
+### setCookieDomain
+
+▸ **setCookieDomain**(`domain`): `void`
+
+Sets the domain for the analytics tracking cookies
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domain` | `string` |
+
+#### Returns
+
+`void`
+
+___
+
+### setCookieNamePrefix
+
+▸ **setCookieNamePrefix**(`prefix`): `void`
+
+Sets the prefix for analytics tracking cookies. Default is "_pk_".
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `prefix` | `string` |
+
+#### Returns
+
+`void`
+
+___
+
+### setCookiePath
+
+▸ **setCookiePath**(`path`): `void`
+
+Sets the analytics tracking cookies path
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `path` | `string` |
+
+#### Returns
+
+`void`
+
+___
+
+### setReferralCookieTimeout
+
+▸ **setReferralCookieTimeout**(`seconds`): `void`
+
+Sets the expiration time of referral cookies
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `seconds` | `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### setSecureCookie
+
+▸ **setSecureCookie**(`secure`): `void`
+
+Toggles the secure cookie flag on all first party cookies (if you are using HTTPS)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `secure` | `boolean` |
+
+#### Returns
+
+`void`
+
+___
+
+### setSessionCookieTimeout
+
+▸ **setSessionCookieTimeout**(`seconds`): `void`
+
+Sets the expiration time of session cookies
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `seconds` | `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### setVisitorCookieTimeout
+
+▸ **setVisitorCookieTimeout**(`seconds`): `void`
+
+Sets the expiration time of visitor cookies
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `seconds` | `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### setVisitorIdCookie
+
+▸ **setVisitorIdCookie**(): `void`
+
+Sets cookie containing [analytics ID](https://developers.piwik.pro/en/latest/glossary.html#term-analytics-id) in browser
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd"></a>
+
+
+# CustomDimensions
+
+
+## Table of contents
+
+
+- [deleteCustomDimension](#deletecustomdimension)
+- [getCustomDimensionValue](#getcustomdimensionvalue)
+- [setCustomDimensionValue](#setcustomdimensionvalue)
+
+## Functions
+
+### deleteCustomDimension
+
+▸ **deleteCustomDimension**(`customDimensionId`): `void`
+
+Removes a custom dimension with the specified ID.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `customDimensionId` | `string` |
+
+#### Returns
+
+`void`
+
+___
+
+### getCustomDimensionValue
+
+▸ **getCustomDimensionValue**(`customDimensionId`): `Promise`\<`string` \| `undefined`\>
+
+Returns the value of a custom dimension with the specified ID.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `customDimensionId` | `string` \| `number` |
+
+#### Returns
+
+`Promise`\<`string` \| `undefined`\>
+
+___
+
+### setCustomDimensionValue
+
+▸ **setCustomDimensionValue**(`customDimensionId`, `customDimensionValue`): `void`
+
+Sets a custom dimension value to be used later.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `customDimensionId` | `string` \| `number` |
+| `customDimensionValue` | `string` |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd"></a>
+
+
+# CustomEvent
+
+
+## Table of contents
+
+
+- [trackEvent](#trackevent)
+
+## Functions
+
+### trackEvent
+
+▸ **trackEvent**(`category`, `action`, `name?`, `value?`, `dimensions?`): `void`
+
+Tracks a custom event, e.g. when a visitor interacts with the page
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `category` | `string` |
+| `action` | `string` |
+| `name?` | `string` |
+| `value?` | `number` |
+| `dimensions?` | [`Dimensions`](#dimensions) |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd"></a>
+
+
+# DataLayer
+
+
+## Table of contents
+
+
+- [push](#push)
+
+## Functions
+
+### push
+
+▸ **push**(`data`): `number`
+
+Adds entry to a data layer
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `data` | `any` |
+
+#### Returns
+
+`number`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd"></a>
+
+
+# DownloadAndOutlink
+
+
+## Table of contents
+
+
+- [addDownloadExtensions](#adddownloadextensions)
+- [enableLinkTracking](#enablelinktracking)
+- [getLinkTrackingTimer](#getlinktrackingtimer)
+- [removeDownloadExtensions](#removedownloadextensions)
+- [setDownloadClasses](#setdownloadclasses)
+- [setDownloadExtensions](#setdownloadextensions)
+- [setIgnoreClasses](#setignoreclasses)
+- [setLinkClasses](#setlinkclasses)
+- [setLinkTrackingTimer](#setlinktrackingtimer)
+- [trackLink](#tracklink)
+
+## Functions
+
+### addDownloadExtensions
+
+▸ **addDownloadExtensions**(`extensions`): `void`
+
+Adds new extensions to the download extensions list
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `extensions` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### enableLinkTracking
+
+▸ **enableLinkTracking**(`trackAlsoMiddleAndRightClicks?`): `void`
+
+Enables automatic link tracking. If called with `true`, left, right and
+middle clicks on links will be treated as opening a link. Opening a links to
+an external site (different domain) creates an outlink event. Opening a link
+to a downloadable file creates a download event
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `trackAlsoMiddleAndRightClicks?` | `boolean` |
+
+#### Returns
+
+`void`
+
+___
+
+### getLinkTrackingTimer
+
+▸ **getLinkTrackingTimer**(): `Promise`\<`number`\>
+
+Returns lock/wait time after a request set by setLinkTrackingTimer
+
+#### Returns
+
+`Promise`\<`number`\>
+
+___
+
+### removeDownloadExtensions
+
+▸ **removeDownloadExtensions**(`extensions`): `void`
+
+Removes extensions from the download extensions list
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `extensions` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### setDownloadClasses
+
+▸ **setDownloadClasses**(`classes`): `void`
+
+Sets a list of class names that indicate whether a list is a download and not an outlink
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `classes` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### setDownloadExtensions
+
+▸ **setDownloadExtensions**(`extensions`): `void`
+
+Overwrites the list of file extensions indicating that a link is a download
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `extensions` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### setIgnoreClasses
+
+▸ **setIgnoreClasses**(`classes`): `void`
+
+Set a list of class names that indicate a link should not be tracked
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `classes` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### setLinkClasses
+
+▸ **setLinkClasses**(`classes`): `void`
+
+Sets a list of class names that indicate whether a link is an outlink and not download
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `classes` | `string`[] |
+
+#### Returns
+
+`void`
+
+___
+
+### setLinkTrackingTimer
+
+▸ **setLinkTrackingTimer**(`time`): `void`
+
+When a visitor produces an events and closes the page immediately afterwards,
+e.g. when opening a link, the request might get cancelled. To avoid loosing
+the last event this way, JavaScript Tracking Client will lock the page for a
+fraction of a second (if wait time hasn’t passed), giving the request time to
+reach the Collecting & Processing Pipeline
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `time` | `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### trackLink
+
+▸ **trackLink**(`url`, `linkType`, `dimensions?`, `callback?`): `void`
+
+Manually tracks outlink or download event with provided values
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `url` | `string` |
+| `linkType` | `string` |
+| `dimensions?` | [`Dimensions`](#dimensions) |
+| `callback?` | () => `void` |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd"></a>
+
+
+# GoalConversions
+
+
+## Table of contents
+
+
+- [trackGoal](#trackgoal)
+
+## Functions
+
+### trackGoal
+
+▸ **trackGoal**(`goalId`, `conversionValue`, `dimensions?`): `void`
+
+Tracks manual goal conversion
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `goalId` | `string` \| `number` |
+| `conversionValue` | `number` |
+| `dimensions?` | [`Dimensions`](#dimensions) |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd"></a>
+
+
+# PageViews
+
+
+## Table of contents
+
+
+- [trackPageView](#trackpageview)
+
+## Functions
+
+### trackPageView
+
+▸ **trackPageView**(`customPageTitle?`): `void`
+
+Tracks a visit on the page that the function was run on
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `customPageTitle?` | `string` |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd"></a>
+
+
+# SiteSearch
+
+
+## Table of contents
+
+
+- [trackSiteSearch](#tracksitesearch)
+
+## Functions
+
+### trackSiteSearch
+
+▸ **trackSiteSearch**(`keyword`, `category?`, `searchCount?`, `dimensions?`): `void`
+
+Tracks search requests on a website
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `keyword` | `string` |
+| `category?` | `string` |
+| `searchCount?` | `number` |
+| `dimensions?` | [`Dimensions`](#dimensions) |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd"></a>
+
+
+# UserManagement
+
+
+## Table of contents
+
+
+- [getUserId](#getuserid)
+- [getVisitorId](#getvisitorid)
+- [getVisitorInfo](#getvisitorinfo)
+- [resetUserId](#resetuserid)
+- [setUserId](#setuserid)
+
+## Functions
+
+### getUserId
+
+▸ **getUserId**(): `Promise`\<`string`\>
+
+The function that will return user ID
+
+#### Returns
+
+`Promise`\<`string`\>
+
+___
+
+### getVisitorId
+
+▸ **getVisitorId**(): `Promise`\<`string`\>
+
+Returns 16-character hex ID of the visitor
+
+#### Returns
+
+`Promise`\<`string`\>
+
+___
+
+### getVisitorInfo
+
+▸ **getVisitorInfo**(): `Promise`\<[`VisitorInfo`](#visitorinfo)\>
+
+Returns visitor information in an array
+
+#### Returns
+
+`Promise`\<[`VisitorInfo`](#visitorinfo)\>
+
+___
+
+### resetUserId
+
+▸ **resetUserId**(): `void`
+
+Clears previously set userID, e.g. when visitor logs out
+
+#### Returns
+
+`void`
+
+___
+
+### setUserId
+
+▸ **setUserId**(`userId`): `void`
+
+User ID is an additional parameter that allows you to aggregate data. When
+set up, you will be able to search through sessions by this parameter, filter
+reports through it or create Multi attribution reports using User ID
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `userId` | `string` |
+
+#### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd"></a>
+
+
+# eCommerce
+
+
+## Table of contents
+
+
+- [addEcommerceItem](#addecommerceitem)
+- [clearEcommerceCart](#clearecommercecart)
+- [ecommerceAddToCart](#ecommerceaddtocart)
+- [ecommerceCartUpdate](#ecommercecartupdate)
+- [ecommerceOrder](#ecommerceorder)
+- [ecommerceProductDetailView](#ecommerceproductdetailview)
+- [ecommerceRemoveFromCart](#ecommerceremovefromcart)
+- [getEcommerceItems](#getecommerceitems)
+- [removeEcommerceItem](#removeecommerceitem)
+- [setEcommerceView](#setecommerceview)
+- [trackEcommerceCartUpdate](#trackecommercecartupdate)
+- [trackEcommerceOrder](#trackecommerceorder)
+
+## Functions
+
+### addEcommerceItem
+
+▸ **addEcommerceItem**(`productSKU`, `productName`, `productCategory`, `productPrice`, `productQuantity`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `productSKU` | `string` |
+| `productName` | `string` |
+| `productCategory` | `string` \| `string`[] |
+| `productPrice` | `number` |
+| `productQuantity` | `number` |
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+Please use the ecommerceAddToCart instead.
+
+___
+
+### clearEcommerceCart
+
+▸ **clearEcommerceCart**(): `void`
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+___
+
+### ecommerceAddToCart
+
+▸ **ecommerceAddToCart**(`products`): `void`
+
+Tracks action of adding products to a cart
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `products` | [`Product`](#product)[] |
+
+#### Returns
+
+`void`
+
+___
+
+### ecommerceCartUpdate
+
+▸ **ecommerceCartUpdate**(`products`, `grandTotal`): `void`
+
+Tracks current state of a cart
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `products` | [`Product`](#product)[] |
+| `grandTotal` | `string` \| `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### ecommerceOrder
+
+▸ **ecommerceOrder**(`products`, `paymentInformation`): `void`
+
+Tracks conversion, including products and payment details
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `products` | [`Product`](#product)[] |
+| `paymentInformation` | [`PaymentInformation`](#paymentinformation) |
+
+#### Returns
+
+`void`
+
+___
+
+### ecommerceProductDetailView
+
+▸ **ecommerceProductDetailView**(`products`): `void`
+
+Tracks action of viewing product page
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `products` | [`Product`](#product)[] |
+
+#### Returns
+
+`void`
+
+___
+
+### ecommerceRemoveFromCart
+
+▸ **ecommerceRemoveFromCart**(`products`): `void`
+
+Tracks action of removing a products from a cart
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `products` | [`Product`](#product)[] |
+
+#### Returns
+
+`void`
+
+___
+
+### getEcommerceItems
+
+▸ **getEcommerceItems**(): `Promise`\<`object`\>
+
+#### Returns
+
+`Promise`\<`object`\>
+
+**`Deprecated`**
+
+___
+
+### removeEcommerceItem
+
+▸ **removeEcommerceItem**(`productSKU`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `productSKU` | `string` |
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+Please use the ecommerceRemoveFromCart instead.
+
+___
+
+### setEcommerceView
+
+▸ **setEcommerceView**(`productSKU`, `productName?`, `productCategory?`, `productPrice?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `productSKU` | `string` |
+| `productName?` | `string` |
+| `productCategory?` | `string`[] |
+| `productPrice?` | `string` |
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+___
+
+### trackEcommerceCartUpdate
+
+▸ **trackEcommerceCartUpdate**(`cartAmount`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `cartAmount` | `number` |
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+Please use the ecommerceCartUpdate instead.
+
+___
+
+### trackEcommerceOrder
+
+▸ **trackEcommerceOrder**(`orderId`, `orderGrandTotal`, `orderSubTotal?`, `orderTax?`, `orderShipping?`, `orderDiscount?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `orderId` | `string` |
+| `orderGrandTotal` | `number` |
+| `orderSubTotal?` | `number` |
+| `orderTax?` | `number` |
+| `orderShipping?` | `number` |
+| `orderDiscount?` | `number` |
+
+#### Returns
+
+`void`
+
+**`Deprecated`**
+
+Please use the ecommerceOrder instead.
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmd"></a>
+
+
+## Variables
+
+### default
+
+• `Const` **default**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `getInitScript` | typeof `PiwikPro.getInitScript` |
+| `initialize` | typeof `PiwikPro.init` |
+
+
+<a name="modulessrcmd"></a>
+
+
+# Module: src
+
+## Table of contents
+
+### Type Aliases
+
+- [PiwikProProviderProps](#piwikproproviderprops)
+
+
+- [default](#default)
+- [usePiwikPro](#usepiwikpro)
+
+## Type Aliases
+
+### PiwikProProviderProps
+
+Ƭ **PiwikProProviderProps**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `children` | `ReactNode` |
+| `containerId` | `string` |
+| `containerUrl` | `string` |
+| `nonce?` | `string` |
+
+## Functions
+
+### default
+
+▸ **default**(`props`, `context?`): `ReactNode`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | [`PiwikProProviderProps`](#piwikproproviderprops) |
+| `context?` | `any` |
+
+#### Returns
+
+`ReactNode`
+
+___
+
+### usePiwikPro
+
+▸ **usePiwikPro**(): `__module`
+
+#### Returns
+
+`__module`

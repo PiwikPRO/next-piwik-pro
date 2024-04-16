@@ -1,5 +1,5 @@
-import { PiwikProProvider, usePiwikPro } from './core'
-
-export { usePiwikPro }
-
-export default PiwikProProvider
+export {
+  PiwikProProvider as default,
+  usePiwikPro,
+  type PiwikProProviderProps
+} from './core'

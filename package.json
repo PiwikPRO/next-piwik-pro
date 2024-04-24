@@ -29,7 +29,7 @@
     "next": ">=13.0.0 <15.0.0"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^2.0.0"
+    "@piwikpro/react-piwik-pro": "^2.0.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

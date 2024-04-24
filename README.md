@@ -671,7 +671,7 @@ Removes a custom dimension with the specified ID.
 
 | Name | Type |
 | :------ | :------ |
-| `customDimensionId` | `string` |
+| `customDimensionId` | `string` \| `number` |
 
 #### Returns
 

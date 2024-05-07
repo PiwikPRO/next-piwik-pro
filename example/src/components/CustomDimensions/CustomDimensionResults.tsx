@@ -16,7 +16,7 @@ const CustomDimensionResults: FunctionComponent = () => {
 
       // function getCustomDimensionValue(customDimensionId: string | number): Promise<string>
       const cDimValue = await CustomDimensions.getCustomDimensionValue(12)
-      setCustomDimValue(cDimValue)
+      setCustomDimValue(cDimValue ?? '')
 
       // function deleteCustomDimension(customDimensionId: string): void
       CustomDimensions.deleteCustomDimension('12')
@@ -59,7 +59,7 @@ const CustomDimensionResults: FunctionComponent = () => {
         onClick={() => {
           const callAsyncMethods = async () => {
             const cDimValue = await CustomDimensions.getCustomDimensionValue(12)
-            setCustomDimValue(cDimValue)
+            setCustomDimValue(cDimValue ?? '')
           }
 
           callAsyncMethods()

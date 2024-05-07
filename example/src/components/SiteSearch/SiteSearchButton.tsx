@@ -8,7 +8,6 @@ const SiteSearchButton: FunctionComponent = () => {
   const { SiteSearch } = usePiwikPro()
 
   useEffect(() => {
-    // function trackSiteSearch(keyword: string, category?: string | undefined, searchCount?: number | undefined, dimensions?: Object | undefined): void
     SiteSearch.trackSiteSearch('keyword', 'category', 5)
   }, [])
 

@@ -10,35 +10,25 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
 
   useEffect(() => {
     const callAsyncMethods = async () => {
-      // function trackLink(url: string, linkType: string, customData?: object | undefined, callback?: ((params: any) => void) | undefined): void
       DownloadAndOutlink.trackLink('http://localhost:3000', 'link')
 
-      // function enableLinkTracking(enable: boolean): void
       DownloadAndOutlink.enableLinkTracking(true)
 
-      // function setLinkClasses(classes: string[]): void
       DownloadAndOutlink.setLinkClasses(['this-is-an-outlink'])
 
-      // function setDownloadClasses(classes: string[]): void
       DownloadAndOutlink.setDownloadClasses(['this-is-a-download'])
 
-      // function setDownloadExtensions(extensions: string[]): void
       DownloadAndOutlink.setDownloadExtensions(['zip'])
 
-      // function addDownloadExtensions(extensions: string[]): void
       DownloadAndOutlink.addDownloadExtensions(['7z'])
 
-      // function removeDownloadExtensions(extensions: string[]): void
       DownloadAndOutlink.removeDownloadExtensions(['pdf', 'xlsx'])
 
-      // function setLinkTrackingTimer(time: number): void
       DownloadAndOutlink.setLinkTrackingTimer(10)
 
-      // function getLinkTrackingTimer(): Promise<string>
       const lTrackingTimer = await DownloadAndOutlink.getLinkTrackingTimer()
-      setLinkTrackingTimer(lTrackingTimer)
+      setLinkTrackingTimer(lTrackingTimer.toString())
 
-      // function setIgnoreClasses(classes: string[]): void
       DownloadAndOutlink.setIgnoreClasses(['do-not-track'])
     }
 
@@ -126,7 +116,7 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
             const callAsyncMethods = async () => {
               const lTrackingTimer =
                 await DownloadAndOutlink.getLinkTrackingTimer()
-              setLinkTrackingTimer(lTrackingTimer)
+              setLinkTrackingTimer(lTrackingTimer.toString())
             }
 
             callAsyncMethods()

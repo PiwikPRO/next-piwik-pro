@@ -4,6 +4,7 @@ import PiwikProProvider from '@piwikpro/next-piwik-pro'
 import { SnackbarProvider } from 'notistack'
 import { Box, Container, Grid } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { appConfig } from '@/src/config'
 
 export default function RootLayout({
   children
@@ -12,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <PiwikProProvider
-      containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
-      containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
+      containerUrl={appConfig.containerUrl}
+      containerId={appConfig.containerId}
     >
       <html lang='en'>
         <body>

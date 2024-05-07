@@ -8,7 +8,7 @@ import {
   Paper,
   Typography
 } from '@mui/material'
-import { Product } from '@piwikpro/react-piwik-pro/dist/interfaces/product'
+import { Product } from '@piwikpro/react-piwik-pro'
 
 type Props = {
   product: Product | null
@@ -17,10 +17,10 @@ type Props = {
 }
 
 const ProductDetailView: FunctionComponent<Props> = ({
-                                                       product,
-                                                       isOpen,
-                                                       close
-                                                     }) => {
+  product,
+  isOpen,
+  close
+}) => {
   return (
     <Dialog onClose={close} open={isOpen}>
       {product && (

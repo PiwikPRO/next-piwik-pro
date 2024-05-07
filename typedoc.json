@@ -1,0 +1,8 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.tsx", "node_modules/@piwikpro/react-piwik-pro/dist/index.d.ts"],
+  "out": "docs_raw",
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "docs/README_BASE.md",
+  "disableSources": true,
+}

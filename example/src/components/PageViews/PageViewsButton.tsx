@@ -8,7 +8,6 @@ const PageViewsButton: FunctionComponent = () => {
   const { PageViews } = usePiwikPro()
 
   useEffect(() => {
-    // function trackPageView(customPageTitle?: string | undefined): void
     PageViews.trackPageView('optional title')
   }, [])
 

@@ -1,6 +1,6 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "yarn eslint .",
     "build": "tsc",
-    "build:docs": "typedoc && concat-md docs_raw > README.md && node scripts/postProcessDocs.js",
+    "build:docs": "typedoc && concat-md --decrease-title-levels --start-title-level-at=2 docs_raw > README.md && node scripts/postProcessDocs.js",
     "dev": "tsc --watch"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "next": ">=13.0.0 <15.0.0"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^2.0.1"
+    "@piwikpro/react-piwik-pro": "^2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

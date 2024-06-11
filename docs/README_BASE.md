@@ -9,13 +9,13 @@ To use this package in your project, run the following command.
 
 ### npm
 
-``` sh
+```sh
 npm install @piwikpro/next-piwik-pro
 ```
 
 ### Yarn
 
-``` sh
+```sh
 yarn add @piwikpro/next-piwik-pro
 ```
 
@@ -34,16 +34,18 @@ in the example below).
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
-export default function RootLayout({children}: {
+export default function RootLayout({
+  children
+}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <PiwikProProvider
-          containerId="container-id"
-          containerUrl="container-url"
-        > 
+          containerId='container-id'
+          containerUrl='container-url'
+        >
           {children}
         </PiwikProProvider>
       </body>
@@ -60,7 +62,7 @@ they will be visible only in Node context but not in Next.
 
 #### .env
 
-``` sh
+```sh
 NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
 NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
@@ -72,11 +74,13 @@ NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
-export default function RootLayout({children}: {
+export default function RootLayout({
+  children
+}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <PiwikProProvider
           containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
@@ -105,16 +109,18 @@ method.
 
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
-export default function RootLayout({children}: {
+export default function RootLayout({
+  children
+}: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <PiwikProProvider
-          containerId="container-id"
-          containerUrl="container-url"
-          nonce="nonce-string"
+          containerId='container-id'
+          containerUrl='container-url'
+          nonce='nonce-string'
         >
           {children}
         </PiwikProProvider>
@@ -131,14 +137,14 @@ Make sure to use `usePiwikPro` in client components only, otherwise you will get
 To make it work You need to use it in separated client component (`use component`)
 
 ```ts
-import {usePiwikPro} from '@piwikpro/next-piwik-pro'
+import { usePiwikPro } from '@piwikpro/next-piwik-pro'
 ```
 
 Then you need to define modules you want to use and initialize it from previously included `usePiwikPro` context. In
 example below you can see the initialization of the `PageViews` module.
 
 ```ts
-const {PageViews} = usePiwikPro()
+const { PageViews } = usePiwikPro()
 ```
 
 You can use those methods in all hooks and props for ex. `useEffect` or `onClick`.
@@ -154,10 +160,11 @@ useEffect(() => {
 ### onClick
 
 ```tsx
-<button onClick={() => {
-  CustomEvent.trackEvent('Post', pageData.title)
-}}>
-CustomEvent.trackEvent
-button
+<button
+  onClick={() => {
+    CustomEvent.trackEvent('Post', pageData.title)
+  }}
+>
+  CustomEvent.trackEvent button
 </button>
 ```

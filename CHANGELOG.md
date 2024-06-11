@@ -1,11 +1,16 @@
 # CHANGELOG
 
+* [3.1.0](#3.1.0)
 * [3.0.0](#3.0.0)
 * [2.1.1](#2.1.1)
 * [2.1.0](#2.1.0)
 * [2.0.0](#2.0.0)
 * [1.0.1](#1.0.1)
 * [1.0.0](#1.0.0)
+
+## 3.1.0
+- Bump [tracking-base-library](https://github.com/PiwikPRO/tracking-base-library/releases/tag/1.2.0)
+- Allow to customize data layer name
 
 ## 3.0.0
 - Minimum supported node version: 18

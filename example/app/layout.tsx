@@ -15,6 +15,9 @@ export default function RootLayout({
     <PiwikProProvider
       containerUrl={appConfig.containerUrl}
       containerId={appConfig.containerId}
+      // optional config options
+      // dataLayerName='my-data-layer'
+      // nonce=''
     >
       <html lang='en'>
         <body>

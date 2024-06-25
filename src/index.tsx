@@ -1,5 +1,3 @@
-'use client'
-
 export {
   PiwikProProvider as default,
   usePiwikPro,

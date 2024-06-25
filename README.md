@@ -34,8 +34,6 @@ in the example below).
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -74,8 +72,6 @@ NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -109,8 +105,6 @@ method.
 ##### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -178,99 +172,6 @@ useEffect(() => {
 
 
 
-<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmd"></a>
-
-
-
-### Table of contents
-
-#### Namespaces
-
-- [ContentTracking](#modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd)
-- [CookieManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd)
-- [CustomDimensions](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd)
-- [CustomEvent](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd)
-- [DataLayer](#modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd)
-- [DownloadAndOutlink](#modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd)
-- [ErrorTracking](#modulesnode_modules__piwikpro_react_piwik_pro_disterrortrackingmd)
-- [GoalConversions](#modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd)
-- [PageViews](#modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd)
-- [SiteSearch](#modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd)
-- [UserManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd)
-- [eCommerce](#modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd)
-
-#### Type Aliases
-
-- [Dimensions](#dimensions)
-- [InitOptions](#initoptions)
-- [PaymentInformation](#paymentinformation)
-- [Product](#product)
-- [VisitorInfo](#visitorinfo)
-
-#### Variables
-
-- [default](#default)
-
-### Type Aliases
-
-#### Dimensions
-
-Ƭ **Dimensions**: `Record`\<\`dimension$\{number}\`, `string`\>
-
-___
-
-#### InitOptions
-
-Ƭ **InitOptions**: `Object`
-
-##### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dataLayerName?` | `string` | Defaults to 'dataLayer' |
-| `nonce?` | `string` | - |
-
-___
-
-#### PaymentInformation
-
-Ƭ **PaymentInformation**: `Object`
-
-##### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `discount?` | `number` \| `string` |
-| `grandTotal` | `number` \| `string` |
-| `orderId` | `string` |
-| `shipping?` | `number` \| `string` |
-| `subTotal?` | `number` \| `string` |
-| `tax?` | `number` \| `string` |
-
-___
-
-#### Product
-
-Ƭ **Product**: `Object`
-
-##### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `brand?` | `string` |
-| `category?` | `LimitedArrayFiveStrings` |
-| `customDimensions?` | `Record`\<`number`, `string`\> |
-| `name?` | `string` |
-| `price?` | `number` |
-| `quantity?` | `number` |
-| `sku` | `string` |
-| `variant?` | `string` |
-
-___
-
-#### VisitorInfo
-
-Ƭ **VisitorInfo**: [isNew: "0" \| "1", visitorId: string, firstVisitTS: number, previousVisitCount: string \| number, currentVisitTS: number, lastVisitTS: number \| "", lastEcommerceOrderTS: number \| ""]
 
 
 <a name="modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd"></a>
@@ -1501,6 +1402,101 @@ ___
 **`Deprecated`**
 
 Please use the ecommerceOrder instead.
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmd"></a>
+
+
+
+### Table of contents
+
+#### Namespaces
+
+- [ContentTracking](#modulesnode_modules__piwikpro_react_piwik_pro_distcontenttrackingmd)
+- [CookieManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distcookiemanagementmd)
+- [CustomDimensions](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomdimensionsmd)
+- [CustomEvent](#modulesnode_modules__piwikpro_react_piwik_pro_distcustomeventmd)
+- [DataLayer](#modulesnode_modules__piwikpro_react_piwik_pro_distdatalayermd)
+- [DownloadAndOutlink](#modulesnode_modules__piwikpro_react_piwik_pro_distdownloadandoutlinkmd)
+- [ErrorTracking](#modulesnode_modules__piwikpro_react_piwik_pro_disterrortrackingmd)
+- [GoalConversions](#modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd)
+- [PageViews](#modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd)
+- [SiteSearch](#modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd)
+- [UserManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd)
+- [eCommerce](#modulesnode_modules__piwikpro_react_piwik_pro_distecommercemd)
+
+#### Type Aliases
+
+- [Dimensions](#dimensions)
+- [InitOptions](#initoptions)
+- [PaymentInformation](#paymentinformation)
+- [Product](#product)
+- [VisitorInfo](#visitorinfo)
+
+#### Variables
+
+- [default](#default)
+
+### Type Aliases
+
+#### Dimensions
+
+Ƭ **Dimensions**: `Record`\<\`dimension$\{number}\`, `string`\>
+
+___
+
+#### InitOptions
+
+Ƭ **InitOptions**: `Object`
+
+##### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dataLayerName?` | `string` | Defaults to 'dataLayer' |
+| `nonce?` | `string` | - |
+
+___
+
+#### PaymentInformation
+
+Ƭ **PaymentInformation**: `Object`
+
+##### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `discount?` | `number` \| `string` |
+| `grandTotal` | `number` \| `string` |
+| `orderId` | `string` |
+| `shipping?` | `number` \| `string` |
+| `subTotal?` | `number` \| `string` |
+| `tax?` | `number` \| `string` |
+
+___
+
+#### Product
+
+Ƭ **Product**: `Object`
+
+##### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `brand?` | `string` |
+| `category?` | `LimitedArrayFiveStrings` |
+| `customDimensions?` | `Record`\<`number`, `string`\> |
+| `name?` | `string` |
+| `price?` | `number` |
+| `quantity?` | `number` |
+| `sku` | `string` |
+| `variant?` | `string` |
+
+___
+
+#### VisitorInfo
+
+Ƭ **VisitorInfo**: [isNew: "0" \| "1", visitorId: string, firstVisitTS: number, previousVisitCount: string \| number, currentVisitTS: number, lastVisitTS: number \| "", lastEcommerceOrderTS: number \| ""]
 
 ### Variables
 

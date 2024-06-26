@@ -28,13 +28,41 @@ const formattedOutput = file
     )
   )
   .join('\n')
-  // NOTE: top level table of contents is placed at the bottom for some reason
-  // and needs to be manually (for now) placed at the top 
-  .replace(`### Table of contents
+
+writeFileSync(README, tableOfContentsFixup(formattedOutput))
+
+/**
+ * @description It is not clear why table of contents is not generated on top of
+ * the generated docs. This function moves TOC from bottom of the file to the
+ * top of the generated output
+ * @param {string} readme
+ */
+function tableOfContentsFixup(readme) {
+  const start =
+    '<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmd"></a>'
+  const stop = '<a name="modulessrcmd"></a>'
+
+  /** @type string[] */
+  const TOC = []
+  const lines = readme.split('\n')
+
+  for (const line of lines) {
+    if (line === start || TOC.length > 0) {
+      if (line === stop) {
+        break
+      }
+      TOC.push(line)
+    }
+  }
+  const TOCString = TOC.join('\n')
+
+  return readme.replace(
+    `### Table of contents
 
 #### Modules
 
 - [src](#modulessrcmd)
-`,"")
-
-writeFileSync(README, formattedOutput)
+`,
+    TOCString
+  )
+}

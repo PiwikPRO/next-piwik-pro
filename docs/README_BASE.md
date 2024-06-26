@@ -30,8 +30,6 @@ in the example below).
 #### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -70,8 +68,6 @@ NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 #### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({
@@ -105,8 +101,6 @@ method.
 #### layout.tsx
 
 ```tsx
-'use client'
-
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 
 export default function RootLayout({

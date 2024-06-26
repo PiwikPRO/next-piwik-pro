@@ -56,7 +56,7 @@ function tableOfContentsFixup(readme) {
   }
   const TOCString = TOC.join('\n')
 
-  return readme.replace(
+  return readme.replace(TOCString, '').replace(
     `### Table of contents
 
 #### Modules

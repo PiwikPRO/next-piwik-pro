@@ -52,6 +52,21 @@ export default function RootLayout({
 }
 ```
 
+### Instalation with pages router
+
+In the `next.config.js` use `transpilePackages` option.
+
+Please check out the `./example/pages` directory.
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@piwikpro/next-piwik-pro']
+}
+
+module.exports = nextConfig
+```
+
 ### Setup with environmental variables
 
 If you plan to use environmental variables to config your Piwik account you can do it with adding them to your `.env`

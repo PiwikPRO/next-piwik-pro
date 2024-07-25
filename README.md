@@ -60,7 +60,6 @@ export default function RootLayout({
 
 In the `next.config.js` use `transpilePackages` option.
 
-Please check out the `./example/pages` directory.
 
 ```js
 /** @type {import('next').NextConfig} */

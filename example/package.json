@@ -1,6 +1,6 @@
 {
   "name": "next-piwik-pro-example",
-  "version": "2.1.1",
+  "version": "3.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -32,6 +32,11 @@ export const PiwikProProvider: React.FC<PiwikProProviderProps> = ({
     PiwikProServices.DataLayer.setDataLayerName(dataLayerName)
   }
 
+   // Remove trailing slash from containerUrl if it exists
+   const sanitizedContainerUrl = containerUrl.endsWith('/')
+   ? containerUrl.slice(0, -1)
+   : containerUrl
+   
   return (
     <>
       <Script
@@ -41,7 +46,7 @@ export const PiwikProProvider: React.FC<PiwikProProviderProps> = ({
       >
         {`${PiwikPro.getInitScript({
           containerId,
-          containerUrl,
+          containerUrl: sanitizedContainerUrl,
           dataLayerName
         })}
     `}

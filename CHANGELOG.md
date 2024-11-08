@@ -1,5 +1,7 @@
 # CHANGELOG
 
+* [3.1.2](#3.1.2)
+* [3.1.1](#3.1.1)
 * [3.1.0](#3.1.0)
 * [3.0.0](#3.0.0)
 * [2.1.1](#2.1.1)
@@ -7,6 +9,12 @@
 * [2.0.0](#2.0.0)
 * [1.0.1](#1.0.1)
 * [1.0.0](#1.0.0)
+
+## 3.1.2
+- Remove nextjs <15 requirement
+
+## 3.1.1
+- Allow to use with pages router along with transpilePackages option in next config
 
 ## 3.1.0
 - Bump [tracking-base-library](https://github.com/PiwikPRO/tracking-base-library/releases/tag/1.2.0)

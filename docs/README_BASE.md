@@ -52,7 +52,7 @@ export default function RootLayout({
 }
 ```
 
-### Instalation with pages router
+### Setup with pages router
 
 In the `next.config.js` use `transpilePackages` option.
 

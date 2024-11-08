@@ -1,6 +1,6 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "type": "module",
@@ -26,7 +26,7 @@
     "url": "git@github.com:PiwikPRO/next-piwik-pro.git"
   },
   "peerDependencies": {
-    "next": ">=13.0.0 <15.0.0"
+    "next": ">=13.0.0"
   },
   "dependencies": {
     "@piwikpro/react-piwik-pro": "^2.1.1"

@@ -1,6 +1,6 @@
 {
   "name": "@piwikpro/next-piwik-pro",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "Piwik PRO tracking library for Next.js",
   "license": "MIT",
   "type": "module",
@@ -29,7 +29,7 @@
     "next": ">=13.0.0"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^2.1.1"
+    "@piwikpro/react-piwik-pro": "^2.2.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

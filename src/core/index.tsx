@@ -4,6 +4,7 @@ import React, { ReactElement, ReactNode, useContext } from 'react'
 import Script from 'next/script'
 import PiwikPro, * as PiwikProServices from '@piwikpro/react-piwik-pro'
 import type { InitOptions } from '@piwikpro/react-piwik-pro'
+import { VERSION } from '../version'
 
 const PiwikProContext = React.createContext(PiwikProServices)
 
@@ -21,11 +22,15 @@ export const PiwikProProvider: React.FC<PiwikProProviderProps> = ({
   dataLayerName
 }): ReactElement | null => {
   if (!containerId) {
-    throw new Error('Empty containerId for Piwik Pro.')
+    throw new Error('Empty containerId for Piwik PRO.')
   }
 
   if (!containerUrl) {
-    throw new Error('Empty containerUrl for Piwik Pro.')
+    throw new Error('Empty containerUrl for Piwik PRO.')
+  }
+
+  if (typeof window !== "undefined") {
+    PiwikProServices.Miscellaneous.setTrackingSourceProvider('nextjs', VERSION)
   }
 
   if (dataLayerName) {

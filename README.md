@@ -204,6 +204,7 @@ useEffect(() => {
 - [ErrorTracking](#modulesnode_modules__piwikpro_react_piwik_pro_disterrortrackingmd)
 - [GoalConversions](#modulesnode_modules__piwikpro_react_piwik_pro_distgoalconversionsmd)
 - [Heartbeat](#modulesnode_modules__piwikpro_react_piwik_pro_distheartbeatmd)
+- [Miscellaneous](#modulesnode_modules__piwikpro_react_piwik_pro_distmiscellaneousmd)
 - [PageViews](#modulesnode_modules__piwikpro_react_piwik_pro_distpageviewsmd)
 - [SiteSearch](#modulesnode_modules__piwikpro_react_piwik_pro_distsitesearchmd)
 - [UserManagement](#modulesnode_modules__piwikpro_react_piwik_pro_distusermanagementmd)
@@ -213,6 +214,7 @@ useEffect(() => {
 
 - [Dimensions](#dimensions)
 - [InitOptions](#initoptions)
+- [Initialize](#initialize)
 - [PaymentInformation](#paymentinformation)
 - [Product](#product)
 - [VisitorInfo](#visitorinfo)
@@ -239,6 +241,28 @@ ___
 | :------ | :------ | :------ |
 | `dataLayerName?` | `string` | Defaults to 'dataLayer' |
 | `nonce?` | `string` | - |
+
+___
+
+#### Initialize
+
+Ƭ **Initialize**: (`containerId`: `string`, `containerUrl`: `string`, `nonceOrOptions?`: `string` \| [`InitOptions`](#initoptions)) => `void`
+
+##### Type declaration
+
+▸ (`containerId`, `containerUrl`, `nonceOrOptions?`): `void`
+
+###### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `containerId` | `string` |
+| `containerUrl` | `string` |
+| `nonceOrOptions?` | `string` \| [`InitOptions`](#initoptions) |
+
+###### Returns
+
+`void`
 
 ___
 
@@ -286,14 +310,7 @@ ___
 
 #### default
 
-• `Const` **default**: `Object`
-
-##### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `getInitScript` | typeof `PiwikPro.getInitScript` |
-| `initialize` | typeof `PiwikPro.init` |
+• `Const` **default**: typeof `PiwikPRO.default`
 
 
 
@@ -1380,6 +1397,36 @@ When a visitor is not producing any events (e.g. because they are reading an art
 | Name | Type |
 | :------ | :------ |
 | `delays?` | `number`[] |
+
+##### Returns
+
+`void`
+
+
+<a name="modulesnode_modules__piwikpro_react_piwik_pro_distmiscellaneousmd"></a>
+
+
+## Miscellaneous
+
+
+### Table of contents
+
+
+- [setTrackingSourceProvider](#settrackingsourceprovider)
+
+
+#### setTrackingSourceProvider
+
+▸ **setTrackingSourceProvider**(`provider`, `version`): `void`
+
+Adds metadata about used framework
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `provider` | `string` |
+| `version` | `string` |
 
 ##### Returns
 

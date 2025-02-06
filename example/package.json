@@ -16,7 +16,7 @@
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@mui/material-nextjs": "^5.15.3",
-    "@piwikpro/next-piwik-pro": "file:../dist",
+    "@piwikpro/next-piwik-pro": "file:..",
     "next": "^14.2.5",
     "notistack": "^3.0.1",
     "react": "18.2.0"

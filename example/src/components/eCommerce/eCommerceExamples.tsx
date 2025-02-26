@@ -107,14 +107,17 @@ const eCommerceExamples: FunctionComponent = () => {
   const [cart, setCart] = useState<Product[]>([])
   const { enqueueSnackbar } = useSnackbar()
 
-  const handlelAddToCart = (product: Product) => {
+  const handleAddToCart = (product: Product) => {
     enqueueSnackbar(`eCommerce.ecommerceAddToCart()`, { variant: 'success' })
-    eCommerce.ecommerceAddToCart([
-      {
-        ...product,
-        quantity: 1
-      }
-    ])
+    eCommerce.ecommerceAddToCart(
+      [
+        {
+          ...product,
+          quantity: 1
+        }
+      ],
+      { currencyCode: 'USD' }
+    )
 
     setCart([
       ...cart,
@@ -152,7 +155,7 @@ const eCommerceExamples: FunctionComponent = () => {
     }
 
     enqueueSnackbar(`eCommerce.ecommerceOrder()`, { variant: 'success' })
-    eCommerce.ecommerceOrder(cart, paymentInformation)
+    eCommerce.ecommerceOrder(cart, paymentInformation, { currencyCode: 'USD' })
   }
 
   const removeProduct = (product: Product) => {
@@ -161,7 +164,7 @@ const eCommerceExamples: FunctionComponent = () => {
     enqueueSnackbar(`eCommerce.ecommerceRemoveFromCart()`, {
       variant: 'success'
     })
-    eCommerce.ecommerceRemoveFromCart(newCart)
+    eCommerce.ecommerceRemoveFromCart(newCart, { currencyCode: 'USD' })
   }
 
   const increaseProductQuantity = (product: Product) => {
@@ -188,7 +191,11 @@ const eCommerceExamples: FunctionComponent = () => {
 
     setCart(newCart)
     enqueueSnackbar(`eCommerce.ecommerceCartUpdate()`, { variant: 'success' })
-    eCommerce.ecommerceCartUpdate(newCart, subTotal + tax + shipping - discount)
+    eCommerce.ecommerceCartUpdate(
+      newCart,
+      subTotal + tax + shipping - discount,
+      { currencyCode: 'USD' }
+    )
   }
 
   const [productDetailViewOpen, setProductDetailViewOpen] = useState(false)
@@ -200,7 +207,7 @@ const eCommerceExamples: FunctionComponent = () => {
     enqueueSnackbar(`eCommerce.ecommerceProductDetailView()`, {
       variant: 'success'
     })
-    eCommerce.ecommerceProductDetailView([product])
+    eCommerce.ecommerceProductDetailView([product], { currencyCode: 'USD' })
   }
 
   return (
@@ -234,7 +241,7 @@ const eCommerceExamples: FunctionComponent = () => {
                     <IconButton
                       component={'span'}
                       color={'primary'}
-                      onClick={() => handlelAddToCart(product)}
+                      onClick={() => handleAddToCart(product)}
                     >
                       <AddShoppingCartIcon />
                     </IconButton>

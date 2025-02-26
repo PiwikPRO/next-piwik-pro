@@ -1,6 +1,12 @@
 'use client'
 
-import React, { ReactElement, ReactNode, useContext } from 'react'
+import React, {
+  ReactElement,
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef
+} from 'react'
 import Script from 'next/script'
 import PiwikPro, * as PiwikProServices from '@piwikpro/react-piwik-pro'
 import type { InitOptions } from '@piwikpro/react-piwik-pro'
@@ -21,6 +27,7 @@ export const PiwikProProvider: React.FC<PiwikProProviderProps> = ({
   nonce,
   dataLayerName
 }): ReactElement | null => {
+  const hasInitialized = useRef(false)
   if (!containerId) {
     throw new Error('Empty containerId for Piwik PRO.')
   }
@@ -29,13 +36,22 @@ export const PiwikProProvider: React.FC<PiwikProProviderProps> = ({
     throw new Error('Empty containerUrl for Piwik PRO.')
   }
 
-  if (typeof window !== "undefined") {
-    PiwikProServices.Miscellaneous.setTrackingSourceProvider('nextjs', VERSION)
-  }
+  useEffect(() => {
+    if (hasInitialized.current) return
 
-  if (dataLayerName) {
-    PiwikProServices.DataLayer.setDataLayerName(dataLayerName)
-  }
+    if (typeof window !== 'undefined') {
+      PiwikProServices.Miscellaneous.setTrackingSourceProvider(
+        'nextjs',
+        VERSION
+      )
+    }
+
+    if (dataLayerName) {
+      PiwikProServices.DataLayer.setDataLayerName(dataLayerName)
+    }
+
+    hasInitialized.current = true
+  }, [])
 
   return (
     <>

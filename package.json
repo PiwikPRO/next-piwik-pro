@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "source": "src/index.tsx",
+  "types": "dist/index.d.ts",
   "author": "Piwik Pro Integration Team <integrations@piwik.pro>",
   "engines": {
     "node": ">=18"
@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "yarn eslint .",
-    "build": "tsc",
+    "build": "node scripts/bakeInVersion.js && tsc",
     "build:docs": "typedoc && concat-md --decrease-title-levels --start-title-level-at=2 docs_raw > README.md && node scripts/postProcessDocs.js",
     "dev": "tsc --watch"
   },
@@ -29,7 +29,7 @@
     "next": ">=13.0.0"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^2.2.0"
+    "@piwikpro/react-piwik-pro": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

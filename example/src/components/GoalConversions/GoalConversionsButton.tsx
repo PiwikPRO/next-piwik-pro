@@ -8,7 +8,7 @@ const GoalConversionsButton: FunctionComponent = () => {
   const { GoalConversions } = usePiwikPro()
 
   useEffect(() => {
-    GoalConversions.trackGoal(1, 30)
+    GoalConversions.trackGoal(1, 30, undefined, { currencyCode: 'USD' })
   }, [])
 
   return (
@@ -16,7 +16,7 @@ const GoalConversionsButton: FunctionComponent = () => {
       variant='contained'
       sx={{ mt: 2 }}
       onClick={() => {
-        GoalConversions.trackGoal(2, 40)
+        GoalConversions.trackGoal(2, 40, undefined, { currencyCode: 'USD' })
       }}
     >
       GoalConversions.trackGoal

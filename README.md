@@ -1901,14 +1901,14 @@ Please use the ecommerceOrder instead.
 
 #### default
 
-▸ **default**(`props`, `context?`): `ReactNode`
+▸ **default**(`props`, `deprecatedLegacyContext?`): `ReactNode`
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | [`PiwikProProviderProps`](#piwikproproviderprops) |
-| `context?` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`PiwikProProviderProps`](#piwikproproviderprops) | - |
+| `deprecatedLegacyContext?` | `any` | **`Deprecated`** **`See`** [React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods) |
 
 ##### Returns
 

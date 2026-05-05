@@ -124,6 +124,21 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
         >
           CustomDimensions.getCustomDimensionValue
         </button>
+        <button
+          onClick={() => {
+            DownloadAndOutlink.addDownloadClasses(['this-is-a-download'])
+          }}
+        >
+          DownloadAndOutlink.addDownloadClasses - add download class
+        </button>
+        <button
+          onClick={() => {
+            DownloadAndOutlink.removeDownloadClasses(['this-is-a-download'])
+          }}
+        >
+          DownloadAndOutlink.removeDownloadClasses - remove download class
+        </button>
+
         <h2>Example download</h2>
         <div>
           <a href='/files/example.zip'>Download ZIP</a> - tracked download
@@ -137,6 +152,8 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
             Download XLSX
           </a>{' '}
           - download turned off by default using className
+          <br />
+          <a className='this-is-a-download' href='/files/example.7z'>Download 7Z</a> - download or outlink depending on if the class name <code>this-is-a-download</code> is present
         </div>
       </div>
     </>

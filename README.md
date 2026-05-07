@@ -1098,9 +1098,12 @@ ___
 ### Table of contents
 
 
+- [addDownloadClasses](#adddownloadclasses)
 - [addDownloadExtensions](#adddownloadextensions)
 - [enableLinkTracking](#enablelinktracking)
+- [getDownloadClasses](#getdownloadclasses)
 - [getLinkTrackingTimer](#getlinktrackingtimer)
+- [removeDownloadClasses](#removedownloadclasses)
 - [removeDownloadExtensions](#removedownloadextensions)
 - [setDownloadClasses](#setdownloadclasses)
 - [setDownloadExtensions](#setdownloadextensions)
@@ -1109,6 +1112,24 @@ ___
 - [setLinkTrackingTimer](#setlinktrackingtimer)
 - [trackLink](#tracklink)
 
+
+#### addDownloadClasses
+
+▸ **addDownloadClasses**(`classes`): `void`
+
+Adds new classes to the download classes list
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `classes` | `string`[] |
+
+##### Returns
+
+`void`
+
+___
 
 #### addDownloadExtensions
 
@@ -1149,6 +1170,18 @@ to a downloadable file creates a download event
 
 ___
 
+#### getDownloadClasses
+
+▸ **getDownloadClasses**(): `Promise`\<`string`[]\>
+
+Returns list of download classes (CSS classes that indicate a link is a download)
+
+##### Returns
+
+`Promise`\<`string`[]\>
+
+___
+
 #### getLinkTrackingTimer
 
 ▸ **getLinkTrackingTimer**(): `Promise`\<`number`\>
@@ -1158,6 +1191,24 @@ Returns lock/wait time after a request set by setLinkTrackingTimer
 ##### Returns
 
 `Promise`\<`number`\>
+
+___
+
+#### removeDownloadClasses
+
+▸ **removeDownloadClasses**(`classes`): `void`
+
+Removes classes from the download classes list
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `classes` | `string`[] |
+
+##### Returns
+
+`void`
 
 ___
 

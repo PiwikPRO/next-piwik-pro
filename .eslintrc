@@ -7,8 +7,6 @@
     "standard",
     "standard-react",
     "plugin:prettier/recommended",
-    "prettier",
-    "prettier/react",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
   "parser": "@typescript-eslint/parser",

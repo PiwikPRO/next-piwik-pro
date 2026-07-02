@@ -3,6 +3,9 @@ on:
   release:
     types: [released]
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     timeout-minutes: 30
@@ -13,7 +16,7 @@ jobs:
 
       - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install modules

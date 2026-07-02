@@ -6,22 +6,7 @@ import {
   Product,
   PaymentInformation
 } from '@piwikpro/react-piwik-pro'
-import { useSnackbar } from 'notistack'
-import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography
-} from '@mui/material'
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart'
-import AddIcon from '@mui/icons-material/Add'
-import InfoIcon from '@mui/icons-material/Info'
+import { useSnackbar } from '@/providers/Snackbar'
 import ProductDetailView from '@/src/components/eCommerce/ProductDetailView'
 
 const products: Product[] = [
@@ -102,30 +87,60 @@ const products: Product[] = [
 const eCommerceExamples: FunctionComponent = () => {
   useEffect(() => {
     document.title = 'eCommerce Page'
-  })
+  }, [])
 
   const [cart, setCart] = useState<Product[]>([])
   const { enqueueSnackbar } = useSnackbar()
 
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [productDetailViewOpen, setProductDetailViewOpen] = useState(false)
+
   const handleAddToCart = (product: Product) => {
-    enqueueSnackbar(`eCommerce.ecommerceAddToCart()`, { variant: 'success' })
-    eCommerce.ecommerceAddToCart(
-      [
-        {
-          ...product,
-          quantity: 1
-        }
-      ],
-      { currencyCode: 'USD' }
+    enqueueSnackbar('eCommerce.ecommerceAddToCart()')
+    eCommerce.ecommerceAddToCart([{ ...product, quantity: 1 }], {
+      currencyCode: 'USD'
+    })
+
+    if (cart.some((item) => item.sku === product.sku)) {
+      setCart(
+        cart.map((item) =>
+          item.sku === product.sku
+            ? { ...item, quantity: (item.quantity ?? 1) + 1 }
+            : item
+        )
+      )
+      return
+    }
+
+    setCart([...cart, { ...product, quantity: 1 }])
+  }
+
+  const removeProduct = (product: Product) => {
+    const newCart = cart.filter((item) => item.sku !== product.sku)
+    setCart(newCart)
+    enqueueSnackbar('eCommerce.ecommerceRemoveFromCart()')
+    eCommerce.ecommerceRemoveFromCart([{ ...product, quantity: 1 }], {
+      currencyCode: 'USD'
+    })
+  }
+
+  const increaseProductQuantity = (product: Product) => {
+    const newCart = cart.map((item) =>
+      item.sku === product.sku && item.quantity
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
     )
 
-    setCart([
-      ...cart,
-      {
-        ...product,
-        quantity: 1
-      }
-    ])
+    const grandTotal = newCart.reduce(
+      (acc, item) => acc + (item.price ?? 0) * (item.quantity ?? 1),
+      0
+    )
+
+    setCart(newCart)
+    enqueueSnackbar('eCommerce.ecommerceCartUpdate()')
+    eCommerce.ecommerceCartUpdate(newCart, grandTotal, {
+      currencyCode: 'USD'
+    })
   }
 
   const handleCheckout = () => {
@@ -134,12 +149,10 @@ const eCommerceExamples: FunctionComponent = () => {
       return
     }
 
-    const subTotal = cart.reduce((acc, product) => {
-      if (product.price) {
-        return acc + product.price
-      }
-      return acc
-    }, 0)
+    const subTotal = cart.reduce(
+      (acc, product) => (product.price ? acc + product.price : acc),
+      0
+    )
 
     const tax = 10
     const shipping = 4
@@ -154,180 +167,127 @@ const eCommerceExamples: FunctionComponent = () => {
       discount
     }
 
-    enqueueSnackbar(`eCommerce.ecommerceOrder()`, { variant: 'success' })
+    enqueueSnackbar('eCommerce.ecommerceOrder()')
     eCommerce.ecommerceOrder(cart, paymentInformation, { currencyCode: 'USD' })
   }
-
-  const removeProduct = (product: Product) => {
-    const newCart = cart.filter((item) => item.sku !== product.sku)
-    setCart(newCart)
-    enqueueSnackbar(`eCommerce.ecommerceRemoveFromCart()`, {
-      variant: 'success'
-    })
-    eCommerce.ecommerceRemoveFromCart(newCart, { currencyCode: 'USD' })
-  }
-
-  const increaseProductQuantity = (product: Product) => {
-    const newCart = cart.map((item) => {
-      if (item.sku === product.sku && item.quantity) {
-        return {
-          ...item,
-          quantity: item.quantity + 1
-        }
-      }
-      return item
-    })
-
-    const subTotal = cart.reduce((acc, product) => {
-      if (product.price) {
-        return acc + product.price
-      }
-      return acc
-    }, 0)
-
-    const tax = 10
-    const shipping = 4
-    const discount = 5
-
-    setCart(newCart)
-    enqueueSnackbar(`eCommerce.ecommerceCartUpdate()`, { variant: 'success' })
-    eCommerce.ecommerceCartUpdate(
-      newCart,
-      subTotal + tax + shipping - discount,
-      { currencyCode: 'USD' }
-    )
-  }
-
-  const [productDetailViewOpen, setProductDetailViewOpen] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
   const handleProductDetailViewOpen = (product: Product) => {
     setSelectedProduct(product)
     setProductDetailViewOpen(true)
-    enqueueSnackbar(`eCommerce.ecommerceProductDetailView()`, {
-      variant: 'success'
-    })
+    enqueueSnackbar('eCommerce.ecommerceProductDetailView()')
     eCommerce.ecommerceProductDetailView([product], { currencyCode: 'USD' })
   }
 
   return (
-    <Grid container spacing={4}>
-      <Grid xs={12} sm={7} item>
-        <Paper
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Typography fontWeight={500}>Product list</Typography>
-          <List>
-            {products.map((product) => {
-              return (
-                <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-                  <ListItemText
-                    primary={product.name}
-                    secondary={product.variant}
-                  />
-                  <Typography variant='body2'>${product.price}</Typography>
-                  <Box ml={2}>
-                    <IconButton
-                      component={'span'}
-                      color={'primary'}
-                      onClick={() => handleProductDetailViewOpen(product)}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                    <IconButton
-                      component={'span'}
-                      color={'primary'}
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      <AddShoppingCartIcon />
-                    </IconButton>
-                  </Box>
-                </ListItem>
-              )
-            })}
-          </List>
-        </Paper>
-      </Grid>
-      <Grid xs={12} sm={5} item>
-        <Paper
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Typography fontWeight={500}>Checkout</Typography>
-          <Grid item container direction='column' xs={12}>
-            <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-              Payment details
-            </Typography>
-            <Grid item xs={12}>
-              <List>
-                {cart.map((product: Product, index) => {
-                  return (
-                    <ListItem key={index} sx={{ py: 1, px: 0 }}>
-                      {product.quantity && (
-                        <Typography variant='body2'>
-                          {product.quantity} X &nbsp;
-                        </Typography>
-                      )}
-                      <ListItemText
-                        primary={product.name}
-                        secondary={product.variant}
-                      />
-                      <Typography variant='body2'>${product.price}</Typography>
-                      <Box ml={2}>
-                        <IconButton
-                          component={'span'}
-                          color={'primary'}
+    <div className='columns-2'>
+      <div className='card'>
+        <div className='card-body'>
+          <h2 className='card-title'>Product list</h2>
+          <div className='overflow-x-auto'>
+            <table className='table'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Details</th>
+                  <th>Add to cart</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product.sku}>
+                    <th>
+                      {product.name}
+                      <br />
+                      <small>{product.variant}</small>
+                    </th>
+                    <td>${product.price}</td>
+                    <td>
+                      <button
+                        className='btn btn-sm'
+                        onClick={() => handleProductDetailViewOpen(product)}
+                      >
+                        details
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className='btn btn-sm'
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        add to cart
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div className='card'>
+        <div className='card-body'>
+          <h2 className='card-title'>Cart</h2>
+          {cart.length ? (
+            <div className='overflow-x-auto mb-5'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((product) => (
+                    <tr key={product.sku}>
+                      <th>
+                        {product.name}
+                        <br />
+                        <small>{product.variant}</small>
+                      </th>
+                      <td>{product.quantity}</td>
+                      <td>${product.price}</td>
+                      <td>
+                        <button
+                          className='btn btn-sm'
                           onClick={() => increaseProductQuantity(product)}
                         >
-                          <AddIcon />
-                        </IconButton>
-                      </Box>
-                      <Box ml={2}>
-                        <IconButton
-                          component={'span'}
-                          color={'primary'}
+                          + quantity
+                        </button>
+                        <button
+                          className='btn btn-sm'
                           onClick={() => removeProduct(product)}
                         >
-                          <RemoveShoppingCartIcon />
-                        </IconButton>
-                      </Box>
-                    </ListItem>
-                  )
-                })}
-              </List>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Grid>
-      <Grid item sm={12}>
-        <Paper
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button variant='contained' onClick={handleCheckout} sx={{ ml: 1 }}>
-              Place order
-            </Button>
-          </Box>
-        </Paper>
-      </Grid>
+                          remove from cart
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p>Cart is empty</p>
+          )}
+          {cart.length > 0 && (
+            <div className='card-actions justify-end'>
+              <button className='btn btn-sm' onClick={handleCheckout}>
+                Place order
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
 
       <ProductDetailView
         product={selectedProduct}
         isOpen={productDetailViewOpen}
         close={() => setProductDetailViewOpen(false)}
       />
-    </Grid>
+    </div>
   )
 }
 

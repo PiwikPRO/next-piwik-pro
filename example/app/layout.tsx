@@ -1,8 +1,8 @@
-import { Box, Container, Grid } from '@mui/material'
+import './globals.css'
 
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import PiwikProProvider from '@piwikpro/next-piwik-pro'
 import Snackbar from '@/providers/Snackbar'
+import NavigationDrawer from '@/src/components/NavigationDrawer'
 import { appConfig } from '@/src/config'
 
 export default function RootLayout({
@@ -20,15 +20,10 @@ export default function RootLayout({
     >
       <html lang='en'>
         <body>
-          <AppRouterCacheProvider>
-            <Box sx={{ display: 'flex' }}>
-              <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
-                <Grid container spacing={3}>
-                  <Snackbar>{children}</Snackbar>
-                </Grid>
-              </Container>
-            </Box>
-          </AppRouterCacheProvider>
+          <Snackbar>
+            <NavigationDrawer />
+            <main className='main-content'>{children}</main>
+          </Snackbar>
         </body>
       </html>
     </PiwikProProvider>

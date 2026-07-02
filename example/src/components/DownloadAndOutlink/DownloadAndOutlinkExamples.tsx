@@ -2,9 +2,11 @@
 
 import { FunctionComponent, useEffect, useState } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const DownloadAndOutlinkExamples: FunctionComponent = () => {
   const { DownloadAndOutlink } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   const [linkTrackingTimer, setLinkTrackingTimer] = useState<string>('')
 
@@ -56,84 +58,122 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
       </p>
       <div>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.trackLink('http://localhost:3000', 'link')
+            enqueueSnackbar(
+              "DownloadAndOutlink.trackLink('http://localhost:3000', 'link')"
+            )
           }}
         >
           DownloadAndOutlink.trackLink
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.enableLinkTracking(true)
+            enqueueSnackbar('DownloadAndOutlink.enableLinkTracking(true)')
           }}
         >
           DownloadAndOutlink.enableLinkTracking
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.setLinkClasses(['this-is-an-outlink'])
+            enqueueSnackbar(
+              "DownloadAndOutlink.setLinkClasses(['this-is-an-outlink'])"
+            )
           }}
         >
           DownloadAndOutlink.setLinkClasses
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.setDownloadClasses(['this-is-a-download'])
+            enqueueSnackbar(
+              "DownloadAndOutlink.setDownloadClasses(['this-is-a-download'])"
+            )
           }}
         >
           DownloadAndOutlink.setDownloadClasses
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.addDownloadExtensions(['rar'])
+            enqueueSnackbar(
+              'DownloadAndOutlink.addDownloadExtensions - add RAR tracking'
+            )
           }}
         >
           DownloadAndOutlink.addDownloadExtensions - add RAR tracking
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.removeDownloadExtensions(['rar'])
+            enqueueSnackbar(
+              'DownloadAndOutlink.removeDownloadExtensions - remove RAR tracking'
+            )
           }}
         >
           DownloadAndOutlink.removeDownloadExtensions - remove RAR tracking
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.setIgnoreClasses(['do-not-track'])
+            enqueueSnackbar(
+              "DownloadAndOutlink.setIgnoreClasses(['do-not-track'])"
+            )
           }}
         >
           DownloadAndOutlink.setIgnoreClasses
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.setLinkTrackingTimer(20)
+            enqueueSnackbar('DownloadAndOutlink.setLinkTrackingTimer(20)')
           }}
         >
           DownloadAndOutlink.setLinkTrackingTimer
         </button>
         <button
+          className='btn'
           onClick={() => {
             const callAsyncMethods = async () => {
               const lTrackingTimer =
                 await DownloadAndOutlink.getLinkTrackingTimer()
               setLinkTrackingTimer(lTrackingTimer.toString())
+              enqueueSnackbar('DownloadAndOutlink.getLinkTrackingTimer()')
             }
 
             callAsyncMethods()
           }}
         >
-          CustomDimensions.getCustomDimensionValue
+          DownloadAndOutlink.getLinkTrackingTimer
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.addDownloadClasses(['this-is-a-download'])
+            enqueueSnackbar(
+              "DownloadAndOutlink.addDownloadClasses(['this-is-a-download'])"
+            )
           }}
         >
           DownloadAndOutlink.addDownloadClasses - add download class
         </button>
         <button
+          className='btn'
           onClick={() => {
             DownloadAndOutlink.removeDownloadClasses(['this-is-a-download'])
+            enqueueSnackbar(
+              "DownloadAndOutlink.removeDownloadClasses(['this-is-a-download'])"
+            )
           }}
         >
           DownloadAndOutlink.removeDownloadClasses - remove download class
@@ -153,7 +193,11 @@ const DownloadAndOutlinkExamples: FunctionComponent = () => {
           </a>{' '}
           - download turned off by default using className
           <br />
-          <a className='this-is-a-download' href='/files/example.7z'>Download 7Z</a> - download or outlink depending on if the class name <code>this-is-a-download</code> is present
+          <a className='this-is-a-download' href='/files/example.7z'>
+            Download 7Z
+          </a>{' '}
+          - download or outlink depending on if the class name{' '}
+          <code>this-is-a-download</code> is present
         </div>
       </div>
     </>

@@ -1,22 +1,21 @@
 import { Metadata, NextPage } from 'next'
 import ECommerceExamples from '@/src/components/eCommerce/eCommerceExamples'
 import { PageData } from '@/types/pageData'
-import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'eCommerce',
-  heading: 'User Management',
+  heading: 'eCommerce',
   description:
     'Collection of methods to handle eCommerce events through the Piwik PRO API.',
   methods: [
     {
       method: 'ecommerceAddToCart',
-      usage: 'ecommerce.ecommerceAddToCart(products: Product[])',
+      usage: 'eCommerce.ecommerceAddToCart(products: Product[])',
       desc: 'Tracks action of adding products to a cart.'
     },
     {
       method: 'ecommerceRemoveFromCart',
-      usage: 'ecommerce.ecommerceRemoveFromCart(products: Product[])',
+      usage: 'eCommerce.ecommerceRemoveFromCart(products: Product[])',
       desc: 'Tracks action of removing a products from a cart.'
     },
     {
@@ -47,37 +46,29 @@ const eCommercePage: NextPage = () => {
   const pageData = getPageData()
   return (
     <>
-      <Paper sx={{ p: 2 }}>
+      <div className='page-content'>
         <article>
           <h1>{pageData.heading}</h1>
-          <div>
-            <p>{pageData.description}</p>
-          </div>
+          <p>{pageData.description}</p>
           <h2>Import</h2>
-          <div>
-            <p>
-              <code>
-                {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
-                <br />
-                {'const { eCommerce } = usePiwikPro()'}
-              </code>
-            </p>
-          </div>
+          <p>
+            <code>
+              {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+              <br />
+              {'const { eCommerce } = usePiwikPro()'}
+            </code>
+          </p>
           <h2>Methods</h2>
-          <div>
-            <List>
-              {pageData.methods.map(({ usage, desc, method }) => (
-                <ListItem key={method}>
-                  <ListItemText>
-                    <code>{usage}</code> - {desc}
-                  </ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </div>
-          <ECommerceExamples />
+          <ul>
+            {pageData.methods.map(({ usage, desc, method }) => (
+              <li key={method}>
+                <code>{usage}</code> - {desc}
+              </li>
+            ))}
+          </ul>
         </article>
-      </Paper>
+      </div>
+      <ECommerceExamples />
     </>
   )
 }

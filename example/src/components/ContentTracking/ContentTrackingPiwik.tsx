@@ -11,17 +11,17 @@ const ContentTrackingPiwik: FunctionComponent = () => {
       'contentName',
       'contentPiece',
       'contentTarget'
-      )
+    )
 
     ContentTracking.trackContentInteraction(
       'contentInteraction',
       'contentName',
       'contentPiece',
       'contentTarget'
-      )
+    )
   }, [])
-  
-  return (<></>)
+
+  return <></>
 }
 
 export default ContentTrackingPiwik

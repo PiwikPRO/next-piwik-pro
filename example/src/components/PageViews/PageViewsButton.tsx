@@ -2,25 +2,26 @@
 
 import { FunctionComponent, useEffect } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const PageViewsButton: FunctionComponent = () => {
   const { PageViews } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     PageViews.trackPageView('optional title')
   }, [])
 
   return (
-    <Button
-      variant='contained'
-      sx={{ mt: 2 }}
+    <button
+      className='btn'
       onClick={() => {
         PageViews.trackPageView('optional title from button')
+        enqueueSnackbar("PageViews.trackPageView('optional title from button')")
       }}
     >
       PageViews.trackPageView
-    </Button>
+    </button>
   )
 }
 

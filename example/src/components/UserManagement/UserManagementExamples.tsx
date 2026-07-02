@@ -2,10 +2,11 @@
 
 import { FunctionComponent, useEffect, useState } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const UserManagementExamples: FunctionComponent = () => {
   const { UserManagement } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   const [userId, setUserId] = useState<string>('')
   const [visitorId, setVisitorId] = useState<string>('')
@@ -13,14 +14,14 @@ const UserManagementExamples: FunctionComponent = () => {
 
   useEffect(() => {
     const callAsyncMethods = async () => {
-      // function getUserId(): Promise<string>
+      // function setUserId(userId: string): void
       UserManagement.setUserId('UserId')
 
       // function getUserId(): Promise<string>
       const uId = await UserManagement.getUserId()
       setUserId(uId)
 
-      // function getUserId(): Promise<string>
+      // function getVisitorId(): Promise<string>
       const vId = await UserManagement.getVisitorId()
       setVisitorId(vId)
 
@@ -36,20 +37,18 @@ const UserManagementExamples: FunctionComponent = () => {
   }, [])
 
   return (
-    <>
+    <div>
       <h2>Examples results</h2>
-      <div>
-        <p>
-          <code>UserManagement.getUserId()</code> - {userId}
-        </p>
-        <p>
-          <code>UserManagement.getVisitorId()</code> - {visitorId}
-        </p>
-        <p>
-          <code>UserManagement.getVisitorInfo()</code> -{' '}
-          {JSON.stringify(visitorInfo)}
-        </p>
-      </div>
+      <p>
+        <code>UserManagement.getUserId()</code> - {userId}
+      </p>
+      <p>
+        <code>UserManagement.getVisitorId()</code> - {visitorId}
+      </p>
+      <p>
+        <code>UserManagement.getVisitorInfo()</code> -{' '}
+        {JSON.stringify(visitorInfo)}
+      </p>
       <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
@@ -61,68 +60,68 @@ const UserManagementExamples: FunctionComponent = () => {
         on example below on the button click using <code>onClick</code> prop.
       </p>
       <div>
-        <Button
-          sx={{ ml: 2, mt: 2 }}
-          variant='contained'
+        <button
+          className='btn'
           onClick={() => {
             UserManagement.setUserId('UserIdButton')
+            enqueueSnackbar("UserManagement.setUserId('UserIdButton')")
           }}
         >
           UserManagement.setUserId
-        </Button>
-        <Button
-          sx={{ ml: 2, mt: 2 }}
-          variant='contained'
+        </button>
+        <button
+          className='btn'
           onClick={() => {
             const callAsyncMethods = async () => {
               const uId = await UserManagement.getUserId()
               setUserId(uId)
+              enqueueSnackbar('UserManagement.getUserId()')
             }
 
             callAsyncMethods()
           }}
         >
           UserManagement.getUserId
-        </Button>
-        <Button
-          sx={{ ml: 2, mt: 2 }}
-          variant='contained'
+        </button>
+        <button
+          className='btn'
           onClick={() => {
             const callAsyncMethods = async () => {
               const vId = await UserManagement.getVisitorId()
               setVisitorId(vId)
+              enqueueSnackbar('UserManagement.getVisitorId()')
             }
 
             callAsyncMethods()
           }}
         >
           UserManagement.getVisitorId
-        </Button>
-        <Button
-          sx={{ ml: 2, mt: 2 }}
-          variant='contained'
+        </button>
+        <button
+          className='btn'
           onClick={() => {
             const callAsyncMethods = async () => {
               const vInfo = await UserManagement.getVisitorInfo()
               setVisitorInfo(vInfo)
+              enqueueSnackbar('UserManagement.getVisitorInfo()')
             }
 
             callAsyncMethods()
           }}
         >
           UserManagement.getVisitorInfo
-        </Button>
-        <Button
-          sx={{ ml: 2, mt: 2 }}
-          variant='contained'
+        </button>
+        <button
+          className='btn'
           onClick={() => {
             UserManagement.resetUserId()
+            enqueueSnackbar('UserManagement.resetUserId()')
           }}
         >
           UserManagement.resetUserId
-        </Button>
+        </button>
       </div>
-    </>
+    </div>
   )
 }
 

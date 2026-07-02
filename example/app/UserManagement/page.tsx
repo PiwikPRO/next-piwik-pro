@@ -1,7 +1,6 @@
 import { Metadata, NextPage } from 'next'
 import { PageData } from '@/types/pageData'
 import UserManagementExamples from '@/src/components/UserManagement/UserManagementExamples'
-import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'UserManagement',
@@ -44,39 +43,29 @@ const UserManagementPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
-    <>
-      <Paper sx={{ p: 2 }}>
-        <article>
-          <h1>{pageData.heading}</h1>
-          <div>
-            <p>{pageData.description}</p>
-          </div>
-          <h2>Import</h2>
-          <div>
-            <p>
-              <code>
-                {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
-                <br />
-                {'const { UserManagement } = usePiwikPro()'}
-              </code>
-            </p>
-          </div>
-          <h2>Methods</h2>
-          <div>
-            <List>
-              {pageData.methods.map(({ usage, desc }) => (
-                <ListItem key={usage}>
-                  <ListItemText>
-                    <code>{usage}</code> - {desc}
-                  </ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </div>
-          <UserManagementExamples />
-        </article>
-      </Paper>
-    </>
+    <div className='page-content'>
+      <article>
+        <h1>{pageData.heading}</h1>
+        <p>{pageData.description}</p>
+        <h2>Import</h2>
+        <p>
+          <code>
+            {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+            <br />
+            {'const { UserManagement } = usePiwikPro()'}
+          </code>
+        </p>
+        <h2>Methods</h2>
+        <ul>
+          {pageData.methods.map(({ usage, desc }) => (
+            <li key={usage}>
+              <code>{usage}</code> - {desc}
+            </li>
+          ))}
+        </ul>
+        <UserManagementExamples />
+      </article>
+    </div>
   )
 }
 

@@ -1,7 +1,6 @@
 import { Metadata, NextPage } from 'next'
 import { PageData } from '@/types/pageData'
 import DownloadAndOutlinkExamples from '@/src/components/DownloadAndOutlink/DownloadAndOutlinkExamples'
-import { List, ListItem, ListItemText } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'DownloadAndOutlink',
@@ -72,37 +71,29 @@ const DownloadAndOutlinkPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
-    <>
+    <div className='page-content'>
       <article>
         <h1>{pageData.heading}</h1>
-        <div>
-          <p>{pageData.description}</p>
-        </div>
+        <p>{pageData.description}</p>
         <h2>Import</h2>
-        <div>
-          <p>
-            <code>
-              {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
-              <br />
-              {'const { UserManagement } = usePiwikPro()'}
-            </code>
-          </p>
-        </div>
+        <p>
+          <code>
+            {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+            <br />
+            {'const { DownloadAndOutlink } = usePiwikPro()'}
+          </code>
+        </p>
         <h2>Methods</h2>
-        <div>
-          <List>
-            {pageData.methods.map(({ usage, desc, method }) => (
-              <ListItem key={method}>
-                <ListItemText>
-                  <code>{usage}</code> - {desc}
-                </ListItemText>
-              </ListItem>
-            ))}
-          </List>
-        </div>
+        <ul>
+          {pageData.methods.map(({ usage, desc, method }) => (
+            <li key={method}>
+              <code>{usage}</code> - {desc}
+            </li>
+          ))}
+        </ul>
         <DownloadAndOutlinkExamples />
       </article>
-    </>
+    </div>
   )
 }
 

@@ -1,7 +1,6 @@
 import { PageData } from '@/types/pageData'
 import CustomDimensionResults from '@/src/components/CustomDimensions/CustomDimensionResults'
 import { Metadata, NextPage } from 'next'
-import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 const getPageData = (): PageData => ({
   title: 'CustomDimensions',
@@ -38,40 +37,29 @@ const CustomDimensionsPage: NextPage = () => {
   const pageData = getPageData()
 
   return (
-    <>
-      <Paper sx={{ p: 2 }}>
-        <article>
-          <h1>{pageData.heading}</h1>
-          <div>
-            <p>{pageData.description}</p>
-          </div>
-          <h2>Import</h2>
-          <div>
-            <p>
-              <code>
-                {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
-                <br />
-                {'const { CustomDimensions } = usePiwikPro()'}
-              </code>
-            </p>
-          </div>
-          <h2>Methods</h2>
-          <div>
-            <List>
-              {pageData.methods.map(({ usage, desc, method }) => (
-                <ListItem key={method}>
-                  <ListItemText>
-                    <code>{usage}</code> - {desc}
-                  </ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </div>
-
-          <CustomDimensionResults />
-        </article>
-      </Paper>
-    </>
+    <div className='page-content'>
+      <article>
+        <h1>{pageData.heading}</h1>
+        <p>{pageData.description}</p>
+        <h2>Import</h2>
+        <p>
+          <code>
+            {`import { usePiwikPro } from '@piwikpro/next-piwik-pro'`}
+            <br />
+            {'const { CustomDimensions } = usePiwikPro()'}
+          </code>
+        </p>
+        <h2>Methods</h2>
+        <ul>
+          {pageData.methods.map(({ usage, desc, method }) => (
+            <li key={method}>
+              <code>{usage}</code> - {desc}
+            </li>
+          ))}
+        </ul>
+        <CustomDimensionResults />
+      </article>
+    </div>
   )
 }
 

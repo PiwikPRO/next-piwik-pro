@@ -1,8 +1,8 @@
 'use client'
 
-import React, { FunctionComponent, useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 type Props = {
   title: string
@@ -10,6 +10,7 @@ type Props = {
 
 const CustomEventButton: FunctionComponent<Props> = ({ title }) => {
   const { CustomEvent } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     // function trackEvent(category: string, action: string, name?: string | undefined, value?: number | undefined): void
@@ -17,15 +18,15 @@ const CustomEventButton: FunctionComponent<Props> = ({ title }) => {
   }, [])
 
   return (
-    <Button
-      variant='contained'
-      sx={{ mt: 2 }}
+    <button
+      className='btn'
       onClick={() => {
         CustomEvent.trackEvent('Button', title)
+        enqueueSnackbar(`CustomEvent.trackEvent('Button', '${title}')`)
       }}
     >
       CustomEvent.trackEvent
-    </Button>
+    </button>
   )
 }
 

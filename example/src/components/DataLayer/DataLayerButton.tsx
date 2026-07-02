@@ -1,11 +1,12 @@
 'use client'
 
-import React, { FunctionComponent, useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const DataLayerButton: FunctionComponent = () => {
   const { DataLayer } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     // function push(data: any): any
@@ -13,15 +14,15 @@ const DataLayerButton: FunctionComponent = () => {
   }, [])
 
   return (
-    <Button
-      variant='contained'
-      sx={{ mt: 2 }}
+    <button
+      className='btn'
       onClick={() => {
         DataLayer.push({ data: 'data' })
+        enqueueSnackbar("DataLayer.push({ data: 'data' })")
       }}
     >
       DataLayer.push
-    </Button>
+    </button>
   )
 }
 

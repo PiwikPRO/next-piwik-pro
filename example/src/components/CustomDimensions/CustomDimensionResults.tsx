@@ -2,10 +2,11 @@
 
 import { FunctionComponent, useEffect, useState } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const CustomDimensionResults: FunctionComponent = () => {
   const { CustomDimensions } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   const [customDimValue, setCustomDimValue] = useState<string>('')
 
@@ -28,12 +29,10 @@ const CustomDimensionResults: FunctionComponent = () => {
   return (
     <div>
       <h2>Examples results</h2>
-      <div>
-        <p>
-          <code>CustomDimensions.getCustomDimensionValue()</code> -
-          {customDimValue}
-        </p>
-      </div>
+      <p>
+        <code>CustomDimensions.getCustomDimensionValue()</code> -{' '}
+        {customDimValue}
+      </p>
       <h2>Sample usage</h2>
       <p>
         To see tracking methods usage please turn developers tools in your
@@ -44,38 +43,40 @@ const CustomDimensionResults: FunctionComponent = () => {
         <code>useEffect</code> (methods are invoked when the page starts) or as
         on example below on the button click using <code>onClick</code> prop.
       </p>
-      <Button
-        variant='contained'
-        sx={{ mt: 2, mr: 2 }}
+      <button
+        className='btn'
         onClick={() => {
           CustomDimensions.setCustomDimensionValue(12, 'valueFromButton')
+          enqueueSnackbar(
+            "CustomDimensions.setCustomDimensionValue(12, 'valueFromButton')"
+          )
         }}
       >
         CustomDimensions.setCustomDimensionValue
-      </Button>
-      <Button
-        variant='contained'
-        sx={{ mt: 2, mr: 2 }}
+      </button>
+      <button
+        className='btn'
         onClick={() => {
           const callAsyncMethods = async () => {
             const cDimValue = await CustomDimensions.getCustomDimensionValue(12)
             setCustomDimValue(cDimValue ?? '')
+            enqueueSnackbar('CustomDimensions.getCustomDimensionValue(12)')
           }
 
           callAsyncMethods()
         }}
       >
         CustomDimensions.getCustomDimensionValue
-      </Button>
-      <Button
-        variant='contained'
-        sx={{ mt: 2, mr: 2 }}
+      </button>
+      <button
+        className='btn'
         onClick={() => {
           CustomDimensions.deleteCustomDimension('12')
+          enqueueSnackbar("CustomDimensions.deleteCustomDimension('12')")
         }}
       >
         CustomDimensions.deleteCustomDimension
-      </Button>
+      </button>
     </div>
   )
 }

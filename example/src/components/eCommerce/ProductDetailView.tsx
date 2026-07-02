@@ -1,13 +1,6 @@
-import { FunctionComponent } from 'react'
-import {
-  Dialog,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography
-} from '@mui/material'
+'use client'
+
+import { FunctionComponent, useEffect, useRef } from 'react'
 import { Product } from '@piwikpro/react-piwik-pro'
 
 type Props = {
@@ -21,34 +14,59 @@ const ProductDetailView: FunctionComponent<Props> = ({
   isOpen,
   close
 }) => {
+  const ref = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const dialog = ref.current
+    if (!dialog) return
+
+    if (isOpen && !dialog.open) {
+      dialog.showModal()
+    } else if (!isOpen && dialog.open) {
+      dialog.close()
+    }
+  }, [isOpen])
+
   return (
-    <Dialog onClose={close} open={isOpen}>
-      {product && (
-        <Grid container>
-          <Paper
-            sx={{
-              p: 2,
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            <Typography fontWeight={500}>{product.name}</Typography>
-            <List>
-              {Object.entries(product).map(([productKey, productValue]) => {
-                return (
-                  <ListItem key={productKey} sx={{ py: 1, px: 0 }}>
-                    <ListItemText
-                      primary={productKey}
-                      secondary={JSON.stringify(productValue)}
-                    />
-                  </ListItem>
-                )
-              })}
-            </List>
-          </Paper>
-        </Grid>
-      )}
-    </Dialog>
+    <dialog
+      ref={ref}
+      className='modal'
+      onClose={close}
+      onClick={(event) => {
+        if (event.target === ref.current) close()
+      }}
+    >
+      <div className='modal-box'>
+        {product && (
+          <>
+            <h2 className='card-title'>{product.name}</h2>
+            <div className='overflow-x-auto'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>property</th>
+                    <th>value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(product).map(([key, value]) => (
+                    <tr key={key}>
+                      <th>{key}</th>
+                      <td>{JSON.stringify(value)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+        <div className='modal-action'>
+          <button className='btn' onClick={close}>
+            Close
+          </button>
+        </div>
+      </div>
+    </dialog>
   )
 }
 

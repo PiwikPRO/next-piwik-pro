@@ -2,25 +2,26 @@
 
 import { FunctionComponent, useEffect } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const GoalConversionsButton: FunctionComponent = () => {
   const { GoalConversions } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     GoalConversions.trackGoal(1, 30, undefined, { currencyCode: 'USD' })
   }, [])
 
   return (
-    <Button
-      variant='contained'
-      sx={{ mt: 2 }}
+    <button
+      className='btn'
       onClick={() => {
         GoalConversions.trackGoal(2, 40, undefined, { currencyCode: 'USD' })
+        enqueueSnackbar('GoalConversions.trackGoal(2, 40)')
       }}
     >
       GoalConversions.trackGoal
-    </Button>
+    </button>
   )
 }
 

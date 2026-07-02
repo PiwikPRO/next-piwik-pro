@@ -1,7 +1,5 @@
-import React from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { List, ListItem, ListItemButton, Paper } from '@mui/material'
 
 const EXAMPLES: string[] = [
   'ContentTracking',
@@ -17,27 +15,21 @@ const EXAMPLES: string[] = [
 ]
 
 export const metadata: Metadata = {
-  title: 'Piwik PRO - Nextjs 13 examples'
+  title: 'Piwik PRO - Next.js examples'
 }
 
 const Home = () => {
   return (
-    <>
-      <Paper sx={{ p: 2, width: '100%' }}>
-        <section>
-          <h2>Examples of usage </h2>
-          <List>
-            {EXAMPLES.map((id) => (
-              <ListItem key={id}>
-                <ListItemButton LinkComponent={Link} href={`/${id}`}>
-                  {id}
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </section>
-      </Paper>
-    </>
+    <div className='home-content'>
+      <h1>Examples of usage</h1>
+      <nav className='nav-list'>
+        {EXAMPLES.map((id) => (
+          <Link key={id} className='nav-link' href={`/${id}`}>
+            {id}
+          </Link>
+        ))}
+      </nav>
+    </div>
   )
 }
 

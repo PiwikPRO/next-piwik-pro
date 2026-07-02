@@ -2,29 +2,31 @@
 
 import { FunctionComponent } from 'react'
 import { usePiwikPro } from '@piwikpro/next-piwik-pro'
-import { Button } from '@mui/material'
+import { useSnackbar } from '@/providers/Snackbar'
 
 const TrackContentButtons: FunctionComponent = () => {
   const { ContentTracking } = usePiwikPro()
+  const { enqueueSnackbar } = useSnackbar()
 
   return (
     <div>
-      <Button
-        variant='contained'
-        sx={{ mt: 2, mr: 2 }}
+      <button
+        className='btn'
         onClick={() => {
           ContentTracking.trackContentImpression(
             'contentName',
             'contentPiece',
             'contentTarget'
           )
+          enqueueSnackbar(
+            "ContentTracking.trackContentImpression('contentName', 'contentPiece', 'contentTarget')"
+          )
         }}
       >
-        ContentTracking.trackEvent
-      </Button>
-      <Button
-        variant='contained'
-        sx={{ mt: 2, mr: 2 }}
+        ContentTracking.trackContentImpression
+      </button>
+      <button
+        className='btn'
         onClick={() => {
           ContentTracking.trackContentInteraction(
             'contentInteraction',
@@ -32,10 +34,13 @@ const TrackContentButtons: FunctionComponent = () => {
             'contentPiece',
             'contentTarget'
           )
+          enqueueSnackbar(
+            "ContentTracking.trackContentInteraction('contentInteraction', 'contentName', 'contentPiece', 'contentTarget')"
+          )
         }}
       >
         ContentTracking.trackContentInteraction
-      </Button>
+      </button>
     </div>
   )
 }

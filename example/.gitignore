@@ -5,9 +5,11 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-/__tests__/snapshots/
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 
 # next.js
 /.next/

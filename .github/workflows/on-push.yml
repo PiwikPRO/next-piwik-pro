@@ -12,12 +12,11 @@ permissions:
   contents: read
 
 jobs:
-  run-tests:
+  checks:
     timeout-minutes: 30
     runs-on: ubuntu-latest
 
     steps:
-      # Build library
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
       - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
@@ -31,17 +30,9 @@ jobs:
       - name: Run library build
         run: npm run build
 
-        # Build and test example app
-      - name: Install example dependencies
-        run: cd example && npm ci
+      - name: Run library unit tests
+        run: npm test
 
-      - name: Run example build
-        run: cd example && npm run build
-
-      - name: Run example tests
-        run: cd example && npm run test
-
-      # Check documentation
       - name: Generate documentation
         run: yarn build:docs
 
@@ -52,7 +43,6 @@ jobs:
             exit 1
           fi
 
-  # Verify the library is compatible with the Next.js majors we care about.
   compatibility-tests:
     timeout-minutes: 30
     runs-on: ubuntu-latest
@@ -100,3 +90,9 @@ jobs:
 
       - name: Run example build
         run: cd example && npm run build
+
+      - name: Install Playwright browser
+        run: cd example && npx playwright install --with-deps chromium
+
+      - name: Run example e2e tests
+        run: cd example && npm run test:e2e

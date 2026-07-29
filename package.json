@@ -17,7 +17,7 @@
   "scripts": {
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "lint": "yarn eslint .",
+    "lint": "eslint .",
     "version": "node scripts/bakeInVersion.js && auto-changelog -p && git add CHANGELOG.md src/version.ts",
     "build": "node scripts/bakeInVersion.js && tsc",
     "build:docs": "typedoc && concat-md --decrease-title-levels --start-title-level-at=2 docs_raw > README.md && node scripts/postProcessDocs.js",

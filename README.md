@@ -77,7 +77,7 @@ they will be visible only in Node context but not in Next.
 ##### .env
 
 ```sh
-NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
+NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-a8ef-11926abc4184
 NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
 

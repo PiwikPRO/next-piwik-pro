@@ -9,6 +9,7 @@ vi.mock('next/script', () => ({
 import { PiwikProProvider } from '../core'
 import { usePiwikPro } from '../core'
 import type { ReactNode } from 'react'
+import { randomUUID } from 'crypto'
 
 // The tracking services exposed by @piwikpro/react-piwik-pro (via
 // tracking-base-library).
@@ -31,6 +32,8 @@ const EXPECTED_SERVICES = [
   'Miscellaneous'
 ] as const
 
+const containerId = randomUUID()
+
 describe('usePiwikPro', () => {
   it('exposes every tracking service via the default context value', () => {
     const { result } = renderHook(() => usePiwikPro())
@@ -43,7 +46,7 @@ describe('usePiwikPro', () => {
   it('exposes the tracking services when read under a provider', () => {
     const wrapper = ({ children }: { children: ReactNode }) => (
       <PiwikProProvider
-        containerId='test-id'
+        containerId={containerId}
         containerUrl='https://example.piwik.pro'
       >
         {children}

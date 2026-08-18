@@ -31,7 +31,7 @@
     "next": ">=13.0.0"
   },
   "dependencies": {
-    "@piwikpro/react-piwik-pro": "^2.6.0"
+    "@piwikpro/react-piwik-pro": "^3.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.2.0",

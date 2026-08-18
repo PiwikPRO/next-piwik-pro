@@ -77,7 +77,7 @@ they will be visible only in Node context but not in Next.
 ##### .env
 
 ```sh
-NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-e8fg-1h926ijkl184
+NEXT_PUBLIC_CONTAINER_ID=0a0b8661-8c10-4d59-a8ef-11926abc4184
 NEXT_PUBLIC_CONTAINER_URL=https://example.piwik.pro
 ```
 
@@ -215,6 +215,7 @@ useEffect(() => {
 
 - [Dimensions](#type-aliasesdimensionsmd)
 - [EcommerceOptions](#type-aliasesecommerceoptionsmd)
+- [GetInitScript](#type-aliasesgetinitscriptmd)
 - [Initialize](#type-aliasesinitializemd)
 - [InitOptions](#type-aliasesinitoptionsmd)
 - [PaymentInformation](#type-aliasespaymentinformationmd)
@@ -2269,6 +2270,27 @@ Please use the ecommerceOrder instead.
 Currency code in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. If not provided, the currency set in app settings will be used instead.
 
 
+<a name="type-aliasesgetinitscriptmd"></a>
+
+
+***
+
+
+## GetInitScript
+
+> **GetInitScript** = (`params`) => `string`
+
+### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `params` | `GetInitScriptParams` |
+
+### Returns
+
+`string`
+
+
 <a name="type-aliasesinitoptionsmd"></a>
 
 
@@ -2429,7 +2451,17 @@ Defaults to 'dataLayer'
 
 ## default
 
-> `const` **default**: *typeof* `PiwikPRO.default`
+> `const` **default**: `object`
+
+### Type Declaration
+
+#### getInitScript
+
+> **getInitScript**: [`GetInitScript`](#type-aliasesgetinitscriptmd)
+
+#### initialize
+
+> **initialize**: [`Initialize`](#type-aliasesinitializemd)
 
 
 <a name="srcreadmemd"></a>

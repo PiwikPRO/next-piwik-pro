@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0](https://github.com/PiwikPRO/next-piwik-pro/compare/3.5.0...4.0.0)
+
+### Merged
+
+- chore: bump react-piwik-pro [`#77`](https://github.com/PiwikPRO/next-piwik-pro/pull/77)
+- chore(deps): bump next from 15.5.20 to 15.5.21 in /example [`#69`](https://github.com/PiwikPRO/next-piwik-pro/pull/69)
+- chore(deps): bump next from 16.2.10 to 16.2.12 [`#70`](https://github.com/PiwikPRO/next-piwik-pro/pull/70)
+- ci: add pr title lint [`#72`](https://github.com/PiwikPRO/next-piwik-pro/pull/72)
+- ci: remove yarn [`#71`](https://github.com/PiwikPRO/next-piwik-pro/pull/71)
+- test: added unit and e2e tests [`#68`](https://github.com/PiwikPRO/next-piwik-pro/pull/68)
+- chore: added auto generated Changelog [`#67`](https://github.com/PiwikPRO/next-piwik-pro/pull/67)
+- Bump typedoc and update Readme [`#66`](https://github.com/PiwikPRO/next-piwik-pro/pull/66)
+- Bump eslint and @typescript/eslint deps [`#65`](https://github.com/PiwikPRO/next-piwik-pro/pull/65)
+- Bump next from 14.2.35 to 15.5.20 [`#64`](https://github.com/PiwikPRO/next-piwik-pro/pull/64)
+- Bump minimatch from 3.1.2 to 3.1.5 in /example [`#61`](https://github.com/PiwikPRO/next-piwik-pro/pull/61)
+- Bump minimatch [`#62`](https://github.com/PiwikPRO/next-piwik-pro/pull/62)
+- Bump flatted from 3.2.7 to 3.4.2 [`#63`](https://github.com/PiwikPRO/next-piwik-pro/pull/63)
+- Bump next from 14.2.35 to 15.5.20 in /example [`#60`](https://github.com/PiwikPRO/next-piwik-pro/pull/60)
+- Added next compatibility tests in CI [`#59`](https://github.com/PiwikPRO/next-piwik-pro/pull/59)
+- Removed ui components libraries in /example [`#58`](https://github.com/PiwikPRO/next-piwik-pro/pull/58)
+- Bump flatted from 3.2.9 to 3.4.2 in /example [`#57`](https://github.com/PiwikPRO/next-piwik-pro/pull/57)
+- Bump next from 14.2.5 to 14.2.35 [`#55`](https://github.com/PiwikPRO/next-piwik-pro/pull/55)
+- Bump next from 14.2.5 to 14.2.35 in /example [`#54`](https://github.com/PiwikPRO/next-piwik-pro/pull/54)
+- Bump form-data from 4.0.0 to 4.0.6 in /example [`#53`](https://github.com/PiwikPRO/next-piwik-pro/pull/53)
+- Bump handlebars from 4.7.8 to 4.7.9 [`#51`](https://github.com/PiwikPRO/next-piwik-pro/pull/51)
+
+### Commits
+
+- chore: rebuild docs [`cc72cf7`](https://github.com/PiwikPRO/next-piwik-pro/commit/cc72cf721c156db242c7799fa94d3fc02431490d)
+- Add/update SECURITY.md [`dfff6fa`](https://github.com/PiwikPRO/next-piwik-pro/commit/dfff6fa9cefcc10e6540856a527bdac45e20d161)
+- chore: fix example [`11cb82a`](https://github.com/PiwikPRO/next-piwik-pro/commit/11cb82a1c104f1e45f5d1200f3bccf58cc77a6e8)
+- chore: fix example [`ad7f48e`](https://github.com/PiwikPRO/next-piwik-pro/commit/ad7f48e23401c02e5d3786b2bf5bf86f1373cf1d)
+- test: fix container ID in tests [`8d64c08`](https://github.com/PiwikPRO/next-piwik-pro/commit/8d64c08daa85b1b55b13715810b72926fb6edea7)
+
 ## [3.5.0](https://github.com/PiwikPRO/next-piwik-pro/compare/3.4.0...3.5.0) - 2026-05-07
 
 ### Merged
